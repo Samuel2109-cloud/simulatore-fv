@@ -13,14 +13,9 @@ document.getElementById("autoconsumo").addEventListener("input", function(){
 function calcolaSimulazione(){
 
   const giornoNotte = document.getElementById("giornoNotte").value;
-  const config = document.getElementById("configurazione").value;
 
-  // Determina i kWp in base alla configurazione scelta
-  let kwp = 0;
-  if (config.includes("3")) kwp = 3;
-  if (config.includes("4.5")) kwp = 4.5;
-  if (config.includes("6")) kwp = 6;
-  if (config.includes("9")) kwp = 9;
+  // kWp presi direttamente dal value del select
+  const kwp = parseFloat(document.getElementById("configurazione").value);
 
   const consumi = parseFloat(document.getElementById("consumi").value);
   const prezzoConsumo = parseFloat(document.getElementById("prezzoConsumo").value);
