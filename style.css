@@ -39,7 +39,7 @@ h1 {
 }
 
 /* ============================
-   SCHEMA IMPIANTO ORIGINALE
+   SCHEMA IMPIANTO
 ============================ */
 
 #impianto {
@@ -79,13 +79,14 @@ h1 {
 }
 
 /* ============================
-   LAYOUT A DUE COLONNE
+   LAYOUT PRINCIPALE
 ============================ */
 
 #layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 25px;
+  align-items: start;
 }
 
 #col-sx, #col-dx {
@@ -142,6 +143,19 @@ h2 {
 }
 
 /* ============================
+   RISULTATI SIMULAZIONE
+============================ */
+
+#risultati-simulazione {
+  margin-top: 20px;
+}
+
+#risultati-simulazione p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* ============================
    BLOCCHI
 ============================ */
 
@@ -151,10 +165,6 @@ h2 {
   padding: 15px;
   border-radius: 10px;
   margin-bottom: 20px;
-}
-
-.blocco p {
-  margin: 6px 0;
 }
 
 /* ============================
