@@ -1,203 +1,97 @@
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
 body {
-    background: #f4f7fb;
-    padding: 20px;
-    color: #1a1a1a;
+  background: #e8f1ff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* HEADER */
-.header {
-    text-align: center;
-    margin-bottom: 30px;
+#sky {
+  height: 150px;
+  background: linear-gradient(#87CEEB, #ffffff);
+  position: relative;
+  overflow: hidden;
 }
 
-.logo {
-    width: 180px;
-    margin-bottom: 10px;
+#logo {
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 80px;
+  z-index: 10;
 }
 
-.header h1 {
-    font-size: 28px;
-    color: #003366;
+#sun, #moon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  position: absolute;
+  top: 40px;
+  transition: all 1.5s ease;
 }
 
-/* LAYOUT SIMULAZIONE A DUE COLONNE */
-.simulazione-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin-bottom: 30px;
+#sun { background: yellow; left: 20px; opacity: 1; }
+#moon { background: #ccc; right: 20px; opacity: 0; }
+
+#impianto {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
 }
 
-/* CARD PARAMETRI */
-.parametri {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+.blocco {
+  width: 150px;
+  height: 150px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #aaa;
+  text-align: center;
+  padding-top: 10px;
 }
 
-.parametri h2 {
-    margin-bottom: 20px;
-    color: #003366;
+.icona { font-size: 50px; margin-top: 10px; }
+
+.freccia {
+  width: 80px;
+  height: 10px;
+  background: linear-gradient(90deg, yellow, orange);
+  margin-top: 70px;
+  animation: flow 1.5s infinite linear;
 }
 
-.parametri label {
-    font-weight: bold;
-    margin-top: 12px;
-    display: block;
+@keyframes flow {
+  0% { opacity: 0.2; transform: translateX(0); }
+  100% { opacity: 1; transform: translateX(40px); }
 }
 
-.parametri input,
-.parametri select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #bbb;
-    border-radius: 6px;
-    margin-top: 5px;
+#simulazione {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 30px;
 }
 
-.btn {
-    background: #0055cc;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 20px;
-    font-size: 16px;
+#input-area, #output-area {
+  width: 45%;
+  padding: 20px;
 }
 
-.btn:hover {
-    background: #003f99;
+#divider {
+  width: 2px;
+  background: #ccc;
+  height: 400px;
+  margin: 0 20px;
 }
 
-/* RISULTATI A DESTRA */
-.risultati {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+button {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background: #ffb300;
+  color: white;
+  cursor: pointer;
 }
 
-.risultati h2 {
-    margin-bottom: 20px;
-    color: #003366;
-}
-
-/* GRID RISULTATI */
-.results-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-.result-box {
-    background: #e9f1ff;
-    padding: 18px;
-    border-radius: 10px;
-    text-align: center;
-    border: 2px solid #bcd4ff;
-    min-height: 110px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.result-box h3 {
-    font-size: 15px;
-    margin-bottom: 6px;
-    color: #003366;
-}
-
-.result-box p {
-    font-size: 20px;
-    font-weight: bold;
-    color: #00224d;
-}
-
-/* PREVENTIVO */
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    margin-bottom: 25px;
-}
-
-.card h2 {
-    margin-bottom: 20px;
-    color: #003366;
-}
-
-/* TABELLA PREVENTIVO */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-.table th {
-    background: #003366;
-    color: white;
-    padding: 12px;
-    text-align: center;
-}
-
-.table td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-}
-
-.table tr:nth-child(even) {
-    background: #f2f6ff;
-}
-
-/* SLIDER PREZZO */
-.sliderVal {
-    margin-top: 5px;
-    font-weight: bold;
-}
-
-/* BOTTONI PREVENTIVO */
-.btn-secondary {
-    background: #777;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 15px;
-}
-
-.btn-secondary:hover {
-    background: #555;
-}
-
-/* TOTALI PREVENTIVO */
-.totali {
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-.percentualeFinale {
-    margin-top: 15px;
-    font-size: 22px;
-    color: #003366;
-    text-align: center;
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-    .simulazione-container {
-        grid-template-columns: 1fr;
-    }
-}
+button:hover { background: #ff8800; }
