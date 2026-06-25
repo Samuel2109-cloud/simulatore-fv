@@ -19,58 +19,43 @@ body {
 h1 {
   text-align: center;
   color: #0d3c78;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
 /* ============================
-   TESTATA GRAFICA
+   LOGO CENTRALE
 ============================ */
 
-#sky {
-  position: relative;
-  height: 180px;
-  border-radius: 12px;
-  background: linear-gradient(#87CEEB, #ffffff);
+#header-main {
+  text-align: center;
   margin-bottom: 20px;
-  overflow: hidden;
-}
-
-#sun {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fff700 0%, #ff9900 60%, #ff6600 100%);
-  top: 30px;
-  left: 30px;
-  transition: opacity 0.6s ease;
 }
 
 #logo {
-  position: absolute;
-  height: 90px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: 110px;
+  display: block;
+  margin: 0 auto 10px auto;
 }
 
 /* ============================
-   SCHEMA IMPIANTO
+   SCHEMA IMPIANTO ORIGINALE
 ============================ */
 
 #impianto {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 25px;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 30px;
 }
 
 .blocco {
-  width: 130px;
+  width: 120px;
   height: 80px;
-  border-radius: 8px;
+  border-radius: 10px;
   background: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.10);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,19 +63,19 @@ h1 {
 }
 
 .blocco .titolo {
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 4px;
+  font-weight: 600;
 }
 
 .blocco .icona {
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .freccia {
-  width: 40px;
-  height: 4px;
-  background: #1a4f8b;
-  border-radius: 2px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #0d3c78;
 }
 
 /* ============================
@@ -174,7 +159,7 @@ output {
   gap: 12px;
 }
 
-.valore-slider {
+.slider-cell span {
   min-width: 60px;
   text-align: right;
   font-weight: 600;
@@ -267,5 +252,9 @@ button:hover {
 @media (max-width: 900px) {
   #layout {
     grid-template-columns: 1fr;
+  }
+
+  #impianto {
+    flex-wrap: wrap;
   }
 }

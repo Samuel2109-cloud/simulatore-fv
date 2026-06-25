@@ -1,5 +1,5 @@
 /* ============================================================
-   SEZIONE: SIMULAZIONE FOTOVOLTAICO
+   SIMULAZIONE FOTOVOLTAICO
 ============================================================ */
 
 document.getElementById("btn-avvia").addEventListener("click", () => {
@@ -7,27 +7,9 @@ document.getElementById("btn-avvia").addEventListener("click", () => {
     generaRendimento25Anni();
 });
 
-/* --- Alternanza giorno/notte + animazioni --- */
-function aggiornaSoleLuna(giorno) {
-    const sun = document.getElementById("sun");
-    const sky = document.getElementById("sky");
-
-    if (giorno === "giorno") {
-        sun.style.opacity = "1";
-        sky.style.background = "linear-gradient(#87CEEB, #ffffff)";
-    } else {
-        sun.style.opacity = "0";
-        sky.style.background = "linear-gradient(#0b1a3a, #1a2a4a)";
-    }
-}
-
 /* --- Calcolo simulazione FV --- */
 function aggiornaSimulazione() {
 
-    const giorno = document.getElementById("sel-giorno").value;
-    aggiornaSoleLuna(giorno);
-
-    const impianto = document.getElementById("sel-impianto").value;
     const consumi = +document.getElementById("inp-consumi").value;
     const prezzoConsumo = +document.getElementById("inp-prezzo-consumo").value;
     const prezzoVendita = +document.getElementById("inp-prezzo-vendita").value;
@@ -38,7 +20,7 @@ function aggiornaSimulazione() {
     const inflazione = +document.getElementById("inflazione").value / 100;
     const degrado = 0.0005; // 0,05%
 
-    /* --- Produzione base per configurazione --- */
+    /* --- Produzione --- */
     let produzione = produzioneAnnua;
     let autoconsumo = produzione * (autoconsumoPerc / 100);
     let immissione = produzione - autoconsumo;
@@ -72,7 +54,7 @@ function aggiornaSimulazione() {
 
 
 /* ============================================================
-   SEZIONE: PREVENTIVO RINASCIMENTO SOLARE
+   PREVENTIVO RINASCIMENTO SOLARE
 ============================================================ */
 
 function aggiornaPreventivo() {
@@ -124,7 +106,7 @@ aggiornaPreventivo();
 
 
 /* ============================================================
-   SEZIONE: RENDIMENTO ECONOMICO 25 ANNI
+   RENDIMENTO ECONOMICO 25 ANNI
 ============================================================ */
 
 function generaRendimento25Anni() {

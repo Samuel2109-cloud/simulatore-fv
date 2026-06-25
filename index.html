@@ -10,28 +10,23 @@
 
 <div id="container">
 
-  <!-- HEADER -->
+  <!-- LOGO CENTRALE -->
   <header id="header-main">
+    <img id="logo" src="rinascimento-solare.png" alt="Rinascimento Solare">
     <h1>SIMULATORE FOTOVOLTAICO</h1>
   </header>
 
-  <!-- SCENA GIORNO/NOTTE CON LOGO -->
-  <div id="sky">
-    <div id="sun"></div>
-    <img id="logo" src="rinascimento-solare.png" alt="Rinascimento Solare">
-  </div>
-
-  <!-- SCHEMA IMPIANTO -->
+  <!-- SCHEMA IMPIANTO ORIGINALE -->
   <div id="impianto">
-    <div class="blocco"><div class="titolo">Pannelli FV</div><div class="icona">🔆</div></div>
-    <div class="freccia"></div>
+    <div class="blocco"><div class="titolo">Pannelli</div><div class="icona">🔆</div></div>
+    <div class="freccia">➜</div>
     <div class="blocco"><div class="titolo">Inverter</div><div class="icona">⚡</div></div>
-    <div class="freccia"></div>
+    <div class="freccia">➜</div>
     <div class="blocco"><div class="titolo">Casa</div><div class="icona">🏠</div></div>
-    <div class="freccia"></div>
+    <div class="freccia">➜</div>
+    <div class="blocco"><div class="titolo">Batteria</div><div class="icona">🔋</div></div>
+    <div class="freccia">➜</div>
     <div class="blocco"><div class="titolo">Rete</div><div class="icona">🔌</div></div>
-    <div class="freccia"></div>
-    <div class="blocco"><div class="titolo">Batteria</div><div id="batt-level"></div></div>
   </div>
 
   <!-- LAYOUT A DUE COLONNE -->
@@ -43,54 +38,35 @@
       <h2>Parametri Simulazione</h2>
 
       <div class="blocco">
-        <label>Selettore giorno/notte:
-          <select id="sel-giorno">
-            <option value="giorno">Giorno ☀️</option>
-            <option value="notte">Notte 🌙</option>
-          </select>
-        </label>
 
-        <label>Configurazione impianto:
-          <select id="sel-impianto">
-            <option value="3s">3 kWp senza accumulo</option>
-            <option value="3a">3 kWp + accumulo 5 kWh</option>
-            <option value="4.5s">4,5 kWp senza accumulo</option>
-            <option value="4.5a">4,5 kWp + accumulo 5 kWh</option>
-            <option value="6s">6 kWp senza accumulo</option>
-            <option value="6a">6 kWp + accumulo 5 kWh</option>
-            <option value="9s">9 kWp senza accumulo</option>
-            <option value="9a">9 kWp + accumulo 15 kWh</option>
-          </select>
-        </label>
-
-        <label>Consumi annui attuali (kWh):
+        <label>Consumi annui (kWh):
           <input type="number" id="inp-consumi" value="4000">
         </label>
 
-        <label>Prezzo energia di consumo (€ / kWh):
+        <label>Prezzo energia (€ / kWh):
           <input type="number" step="0.01" id="inp-prezzo-consumo" value="0.25">
         </label>
 
-        <label>Prezzo energia di vendita (€ / kWh):
+        <label>Prezzo vendita energia (€ / kWh):
           <input type="number" step="0.01" id="inp-prezzo-vendita" value="0.10">
         </label>
 
-        <label>PERCENTUALE DI AUTOCONSUMO DIRETTO (%)
+        <label>Autoconsumo diretto (%)
           <input type="range" id="autoconsumo" min="0" max="100" value="70" oninput="this.nextElementSibling.value=this.value">
           <output>70</output>
         </label>
 
-        <label>PRODUZIONE ANNUA STIMATA IMPIANTO (kWh)
+        <label>Produzione annua impianto (kWh)
           <input type="range" id="produzione" min="1000" max="12000" value="4000" oninput="this.nextElementSibling.value=this.value">
           <output>4000</output>
         </label>
 
-        <label>TASSO ANNUO DI INFLAZIONE ENERGETICA (%)
+        <label>Inflazione energetica (%)
           <input type="range" id="inflazione" min="0" max="10" step="0.1" value="3" oninput="this.nextElementSibling.value=this.value">
           <output>3</output>
         </label>
 
-        <label>TASSO DI DEGRADO ANNUO DEI PANNELLI:
+        <label>Degrado pannelli:
           <input type="text" id="degrado" value="0.05%" readonly>
         </label>
 
@@ -103,10 +79,10 @@
         <p>Produzione annua: <span id="out-produzione"></span> kWh</p>
         <p>Autoconsumo: <span id="out-autoconsumo"></span> kWh</p>
         <p>Immissione in rete: <span id="out-immissione"></span> kWh</p>
-        <p>Risparmio diretto in bolletta: <span id="out-risp-bolletta"></span> €</p>
-        <p>Guadagno da RID: <span id="out-rid"></span> €</p>
-        <p>Rendimento totale annuo: <span id="out-rend-annuo"></span> €</p>
-        <p>Ammortamento investimento iniziale: <span id="out-ammortamento"></span> anni</p>
+        <p>Risparmio bolletta: <span id="out-risp-bolletta"></span> €</p>
+        <p>Guadagno RID: <span id="out-rid"></span> €</p>
+        <p>Rendimento annuo: <span id="out-rend-annuo"></span> €</p>
+        <p>Ammortamento: <span id="out-ammortamento"></span> anni</p>
       </div>
 
     </div>
@@ -121,21 +97,22 @@
           <tr>
             <th>Voce</th>
             <th>Q.tà</th>
-            <th>Prezzo RS (€)</th>
-            <th>Prezzo Concorrenza (€)</th>
+            <th>Prezzo RS</th>
+            <th>Concorrenza</th>
             <th>Risparmio %</th>
             <th>Risparmio €</th>
           </tr>
         </thead>
 
         <tbody>
+
           <tr data-voce="moduli">
-            <td>Moduli fotovoltaici</td>
+            <td>Moduli FV</td>
             <td><input type="number" id="q_moduli" value="1"></td>
             <td>
               <div class="slider-cell">
                 <input type="range" id="p_moduli" min="500" max="6000" value="2000" oninput="aggiornaPreventivo()">
-                <span id="v_moduli" class="valore-slider">2000</span>
+                <span id="v_moduli">2000</span>
               </div>
             </td>
             <td id="c_moduli"></td>
@@ -149,7 +126,7 @@
             <td>
               <div class="slider-cell">
                 <input type="range" id="p_inverter" min="300" max="3000" value="800" oninput="aggiornaPreventivo()">
-                <span id="v_inverter" class="valore-slider">800</span>
+                <span id="v_inverter">800</span>
               </div>
             </td>
             <td id="c_inverter"></td>
@@ -158,16 +135,54 @@
           </tr>
 
           <tr data-voce="strutture">
-            <td>Strutture e materiali</td>
+            <td>Strutture</td>
             <td><input type="number" id="q_strutture" value="1"></td>
             <td>
               <div class="slider-cell">
                 <input type="range" id="p_strutture" min="200" max="2000" value="500" oninput="aggiornaPreventivo()">
-                <span id="v_strutture" class="valore-slider">500</span>
+                <span id="v_strutture">500</span>
               </div>
             </td>
             <td id="c_strutture"></td>
-            <td id="r_strutture_per
+            <td id="r_strutture_perc"></td>
+            <td id="r_strutture_euro"></td>
+          </tr>
+
+          <tr data-voce="accumulo">
+            <td>Accumulo</td>
+            <td><input type="number" id="q_accumulo" value="1"></td>
+            <td>
+              <div class="slider-cell">
+                <input type="range" id="p_accumulo" min="1000" max="10000" value="3000" oninput="aggiornaPreventivo()">
+                <span id="v_accumulo">3000</span>
+              </div>
+            </td>
+            <td id="c_accumulo"></td>
+            <td id="r_accumulo_perc"></td>
+            <td id="r_accumulo_euro"></td>
+          </tr>
+
+          <tr data-voce="quadri">
+            <td>Quadri</td>
+            <td><input type="number" id="q_quadri" value="1"></td>
+            <td>
+              <div class="slider-cell">
+                <input type="range" id="p_quadri" min="100" max="1500" value="300" oninput="aggiornaPreventivo()">
+                <span id="v_quadri">300</span>
+              </div>
+            </td>
+            <td id="c_quadri"></td>
+            <td id="r_quadri_perc"></td>
+            <td id="r_quadri_euro"></td>
+          </tr>
+
+          <tr data-voce="progettazione">
+            <td>Progettazione</td>
+            <td><input type="number" id="q_progettazione" value="1"></td>
+            <td>
+              <div class="slider-cell">
+                <input type="range" id="p_progettazione" min="200" max="2000" value="500" oninput="aggiornaPreventivo()">
+                <span id="v_progettazione">500</span>
               </div>
             </td>
             <td id="c_progettazione"></td>
@@ -176,12 +191,12 @@
           </tr>
 
           <tr data-voce="manodopera">
-            <td>Manodopera e installazione</td>
+            <td>Manodopera</td>
             <td><input type="number" id="q_manodopera" value="1"></td>
             <td>
               <div class="slider-cell">
                 <input type="range" id="p_manodopera" min="500" max="5000" value="1000" oninput="aggiornaPreventivo()">
-                <span id="v_manodopera" class="valore-slider">1000</span>
+                <span id="v_manodopera">1000</span>
               </div>
             </td>
             <td id="c_manodopera"></td>
@@ -194,10 +209,10 @@
         <tfoot>
           <tr>
             <th colspan="2">Totale investimento</th>
-            <th id="tot_rinascimento"></th>
-            <th id="tot_concorrenza"></th>
-            <th id="tot_risparmio_perc"></th>
-            <th id="tot_risparmio_euro"></th>
+            <th id="tot_rinascimento">0</th>
+            <th id="tot_concorrenza">0</th>
+            <th id="tot_risparmio_perc">0%</th>
+            <th id="tot_risparmio_euro">0</th>
           </tr>
         </tfoot>
 
@@ -207,7 +222,7 @@
   </div>
 
   <!-- ============================
-       RENDIMENTO 25 ANNI
+       TABELLA RENDIMENTO 25 ANNI
   ============================= -->
 
   <h2>Rendimento Economico a 25 anni</h2>
