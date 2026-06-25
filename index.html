@@ -13,7 +13,6 @@
     <div class="header">
         <h1>SIMULATORE IMPIANTO FOTOVOLTAICO</h1>
 
-        <!-- ICONS LINE -->
         <div class="icone-linea">
             <button>PANNELLI FV</button>
             <button>INVERTER</button>
@@ -23,56 +22,34 @@
         </div>
     </div>
 
-    <!-- SIMULAZIONE -->
-    <div class="simulazione-container">
+    <!-- PARAMETRI -->
+    <div class="parametri">
+        <label>Selettore giorno/notte</label>
+        <select id="giornoNotte">
+            <option value="giorno">Giorno 🌞</option>
+            <option value="notte">Notte 🌙</option>
+        </select>
 
-        <!-- PARAMETRI -->
-        <div class="parametri">
-            <h2>Parametri simulazione</h2>
+        <label>Configurazione impianto</label>
+        <select id="configImpianto">
+            <option value="3kwp">Impianto fotovoltaico da 3 kWp senza accumulo</option>
+            <option value="6kwp">Impianto fotovoltaico da 6 kWp con accumulo</option>
+        </select>
 
-            <label>Selettore giorno/notte</label>
-            <select id="giornoNotte">
-                <option value="giorno">Giorno 🌞</option>
-                <option value="notte">Notte 🌙</option>
-            </select>
+        <label>Consumi annui attuali (kWh)</label>
+        <input id="consumoCliente" type="number" value="4000">
 
-            <label>Configurazione impianto</label>
-            <select id="configImpianto">
-                <option value="3kwp">Impianto fotovoltaico da 3 kWp senza accumulo</option>
-                <option value="6kwp">Impianto fotovoltaico da 6 kWp con accumulo</option>
-            </select>
+        <label>Prezzo energia di consumo (€/kWh)</label>
+        <input id="costoEnergia" type="number" step="0.01" value="0.25">
 
-            <label>Consumi annui attuali (kWh)</label>
-            <input id="consumoCliente" type="number" value="4000">
+        <label>Prezzo energia di vendita (€/kWh)</label>
+        <input id="prezzoRID" type="number" step="0.01" value="0.24">
 
-            <label>Prezzo energia di consumo (€/kWh)</label>
-            <input id="costoEnergia" type="number" step="0.01" value="0.25">
+        <label>Percentuale autoconsumo diretto</label>
+        <input id="autoconsumoPerc" type="range" min="0" max="100" value="70">
+        <p id="autoconsumoVal">70%</p>
 
-            <label>Prezzo energia di vendita (€/kWh)</label>
-            <input id="prezzoRID" type="number" step="0.01" value="0.24">
-
-            <label>Percentuale autoconsumo diretto</label>
-            <input id="autoconsumoPerc" type="range" min="0" max="100" value="70">
-            <p id="autoconsumoVal">70%</p>
-
-            <button id="btnCalcola" class="btn">Avvia simulazione</button>
-        </div>
-
-        <!-- RISULTATI -->
-        <div class="risultati">
-            <h2>Risultati simulazione</h2>
-
-            <div class="results-grid">
-                <div class="result-box"><h3>Produzione totale:</h3><p id="produzione">0</p><span>kWh</span></div>
-                <div class="result-box"><h3>Produzione in autoconsumo:</h3><p id="autocKw">0</p><span>kWh</span></div>
-                <div class="result-box"><h3>Riduzione:</h3><p id="riduzione">0</p><span>kWh</span></div>
-                <div class="result-box"><h3>Immissione:</h3><p id="immissione">0</p><span>kWh</span></div>
-                <div class="result-box"><h3>Risparmio:</h3><p id="risparmio">0</p><span>€</span></div>
-                <div class="result-box"><h3>RID:</h3><p id="rid">0</p><span>€</span></div>
-                <div class="result-box"><h3>Rendita annua:</h3><p id="renditaAnnua">0</p><span>€</span></div>
-                <div class="result-box"><h3>Detrazione fiscale:</h3><p id="detrazione">0</p><span>€</span></div>
-            </div>
-        </div>
+        <button id="btnCalcola" class="btn">Avvia simulazione</button>
     </div>
 
     <!-- PREVENTIVO -->
@@ -92,28 +69,106 @@
             </thead>
 
             <tbody id="preventivoBody">
-                <tr><td>Moduli FV</td><td>1</td><td class="rs">2300</td><td class="conc">2600</td><td class="perc">13%</td><td class="euro">300</td></tr>
-                <tr><td>Inverter</td><td>1</td><td class="rs">920</td><td class="conc">1040</td><td class="perc">13%</td><td class="euro">120</td></tr>
-                <tr><td>Struttura e materiali</td><td>1</td><td class="rs">575</td><td class="conc">650</td><td class="perc">13%</td><td class="euro">75</td></tr>
-                <tr><td>Sistema di accumulo</td><td>1</td><td class="rs">3450</td><td class="conc">3900</td><td class="perc">13%</td><td class="euro">450</td></tr>
-                <tr><td>Quadri, cavi e connettori</td><td>1</td><td class="rs">345</td><td class="conc">390</td><td class="perc">13%</td><td class="euro">45</td></tr>
-                <tr><td>Progettazione e pratiche</td><td>1</td><td class="rs">575</td><td class="conc">650</td><td class="perc">13%</td><td class="euro">75</td></tr>
-                <tr><td>Manodopera e installazione</td><td>1</td><td class="rs">1150</td><td class="conc">1300</td><td class="perc">13%</td><td class="euro">150</td></tr>
+
+                <tr>
+                    <td>Moduli FV</td>
+                    <td><input type="number" class="qty" value="1"></td>
+                    <td>
+                        <input type="range" class="slider" min="500" max="5000" value="2300">
+                        <p class="sliderVal">2300 €</p>
+                    </td>
+                    <td class="conc">0</td>
+                    <td class="perc">0%</td>
+                    <td class="euro">0</td>
+                </tr>
+
+                <tr>
+                    <td>Inverter</td>
+                    <td><input type="number" class="qty" value="1"></td>
+                    <td>
+                        <input type="range" class="slider" min="300" max="3000" value="920">
+                        <p class="sliderVal">920 €</p>
+                    </td>
+                    <td class="conc">0</td>
+                    <td class="perc">0%</td>
+                    <td class="euro">0</td>
+                </tr>
+
+                <tr>
+                    <td>Struttura e materiali</td>
+                    <td><input type="number" class="qty" value="1"></td>
+                    <td>
+                        <input type="range" class="slider" min="200" max="2000" value="575">
+                        <p class="sliderVal">575 €</p>
+                    </td>
+                    <td class="conc">0</td>
+                    <td class="perc">0%</td>
+                    <td class="euro">0</td>
+                </tr>
+
+                <tr>
+                    <td>Sistema di accumulo</td>
+                    <td><input type="number" class="qty" value="1"></td>
+                    <td>
+                        <input type="range" class="slider" min="1000" max="8000" value="3450">
+                        <p class="sliderVal">3450 €</p>
+                    </td>
+                    <td class="conc">0</td>
+                    <td class="perc">0%</td>
+                    <td class="euro">0</td>
+                </tr>
+
+                <tr>
+                    <td>Quadri, cavi e connettori</td>
+                    <td><input type="number" class="qty" value="1"></td>
+                    <td>
+                        <input type="range" class="slider" min="100" max="1000" value="345">
+                        <p class="sliderVal">345 €</p>
+                    </td>
+                    <td class="conc">0</td>
+                    <td class="perc">0%</td>
+                    <td class="euro">0</td>
+                </tr>
+
+                <tr>
+                    <td>Progettazione e pratiche</td>
+                    <td><input type="number" class="qty" value="1"></td>
+                    <td>
+                        <input type="range" class="slider" min="200" max="2000" value="575">
+                        <p class="sliderVal">575 €</p>
+                    </td>
+                    <td class="conc">0</td>
+                    <td class="perc">0%</td>
+                    <td class="euro">0</td>
+                </tr>
+
+                <tr>
+                    <td>Manodopera e installazione</td>
+                    <td><input type="number" class="qty" value="1"></td>
+                    <td>
+                        <input type="range" class="slider" min="500" max="3000" value="1150">
+                        <p class="sliderVal">1150 €</p>
+                    </td>
+                    <td class="conc">0</td>
+                    <td class="perc">0%</td>
+                    <td class="euro">0</td>
+                </tr>
+
             </tbody>
 
             <tfoot>
                 <tr class="totale">
                     <td colspan="2">Totale investimento</td>
-                    <td id="totaleRS">8100.00</td>
-                    <td id="totaleConc">9315.00</td>
-                    <td id="mediaPerc">13%</td>
-                    <td id="totaleEuro">1215.00</td>
+                    <td id="totaleRS">0</td>
+                    <td id="totaleConc">0</td>
+                    <td id="mediaPerc">0%</td>
+                    <td id="totaleEuro">0</td>
                 </tr>
             </tfoot>
         </table>
     </div>
 
-    <!-- TABELLA RENDIMENTO 10 ANNI -->
+    <!-- TABELLA RENDIMENTO 10 ANNI (STATICA) -->
     <div class="card">
         <h2>Rendimento proiettato nei 10 anni</h2>
 
@@ -122,14 +177,16 @@
                 <tr>
                     <th>Anno</th>
                     <th>Efficienza impianto (%)</th>
-                    <th>Valore energia stimato (€/kWh)</th>
-                    <th>Risparmio da autoconsumo (€)</th>
-                    <th>Guadagno da immissione (€)</th>
-                    <th>Rendimento totale annuo (€)</th>
-                    <th>Rendimento cumulato (€)</th>
+                    <th>Valore energia (€/kWh)</th>
+                    <th>Risparmio (€)</th>
+                    <th>Guadagno (€)</th>
+                    <th>Totale (€)</th>
+                    <th>Cumulato (€)</th>
                 </tr>
             </thead>
-            <tbody id="rendimentoBody"></tbody>
+            <tbody>
+                <!-- La compili tu manualmente -->
+            </tbody>
         </table>
     </div>
 
