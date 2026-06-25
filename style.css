@@ -25,50 +25,45 @@ body {
 
 .header h1 {
     font-size: 28px;
-    margin-bottom: 5px;
+    color: #003366;
 }
 
-.header p {
-    font-size: 16px;
-    color: #444;
+/* LAYOUT SIMULAZIONE A DUE COLONNE */
+.simulazione-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
 }
 
-/* CARD */
-.card {
+/* CARD PARAMETRI */
+.parametri {
     background: white;
     padding: 25px;
-    margin-bottom: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.card h2 {
+.parametri h2 {
     margin-bottom: 20px;
     color: #003366;
 }
 
-/* GRID INPUTS */
-.grid-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-label {
+.parametri label {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-top: 12px;
     display: block;
 }
 
-input {
+.parametri input,
+.parametri select {
     width: 100%;
     padding: 10px;
     border: 1px solid #bbb;
     border-radius: 6px;
-    font-size: 15px;
+    margin-top: 5px;
 }
 
-/* BUTTONS */
 .btn {
     background: #0055cc;
     color: white;
@@ -84,25 +79,23 @@ input {
     background: #003f99;
 }
 
-.btn-secondary {
-    background: #999;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-left: 10px;
-    font-size: 16px;
+/* RISULTATI A DESTRA */
+.risultati {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.btn-secondary:hover {
-    background: #777;
+.risultati h2 {
+    margin-bottom: 20px;
+    color: #003366;
 }
 
-/* RISULTATI GRID */
+/* GRID RISULTATI */
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 18px;
 }
 
@@ -112,11 +105,15 @@ input {
     border-radius: 10px;
     text-align: center;
     border: 2px solid #bcd4ff;
+    min-height: 110px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .result-box h3 {
-    font-size: 17px;
-    margin-bottom: 10px;
+    font-size: 15px;
+    margin-bottom: 6px;
     color: #003366;
 }
 
@@ -126,7 +123,21 @@ input {
     color: #00224d;
 }
 
-/* TABLES */
+/* PREVENTIVO */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+}
+
+.card h2 {
+    margin-bottom: 20px;
+    color: #003366;
+}
+
+/* TABELLA PREVENTIVO */
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -150,38 +161,43 @@ input {
     background: #f2f6ff;
 }
 
-.table tr.totale {
-    background: #d9ffd9;
+/* SLIDER PREZZO */
+.sliderVal {
+    margin-top: 5px;
     font-weight: bold;
 }
 
-/* RISPARMIO PERCENTUALE */
-.percentuale {
+/* BOTTONI PREVENTIVO */
+.btn-secondary {
+    background: #777;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
     margin-top: 15px;
+}
+
+.btn-secondary:hover {
+    background: #555;
+}
+
+/* TOTALI PREVENTIVO */
+.totali {
+    margin-top: 10px;
     font-size: 18px;
-    font-weight: bold;
+}
+
+.percentualeFinale {
+    margin-top: 15px;
+    font-size: 22px;
     color: #003366;
     text-align: center;
 }
 
-/* TOTALE 10 ANNI */
-.totale-final {
-    margin-top: 20px;
-    padding: 15px;
-    background: #e6ffe6;
-    border: 2px solid #66cc66;
-    border-radius: 10px;
-    text-align: center;
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .simulazione-container {
+        grid-template-columns: 1fr;
+    }
 }
-
-.totale-final h3 {
-    margin-bottom: 10px;
-    color: #006600;
-}
-
-.totale-final p {
-    font-size: 22px;
-    font-weight: bold;
-    color: #004d00;
-}
-

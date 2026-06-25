@@ -1,101 +1,182 @@
-function calcola() {
+/* ============================
+   AUTOCONSUMO RANGE
+============================ */
+document.getElementById("autoconsumo").addEventListener("input", function(){
+  document.getElementById("autoconsumoVal").textContent = this.value + "%";
+});
 
-    // INPUT
-    let potenza = parseFloat(document.getElementById("potenza").value);
-    let produzione = parseFloat(document.getElementById("produzione").value);
-    let autoconsumoPerc = parseFloat(document.getElementById("autoconsumo").value) / 100;
-    let prezzoEnergia = parseFloat(document.getElementById("prezzo").value);
+/* ============================
+   SIMULAZIONE
+============================ */
 
-    let prezzoNostro = parseFloat(document.getElementById("prezzoNostro").value);
-    let prezzoConc = parseFloat(document.getElementById("prezzoConcorrenza").value);
+function calcolaSimulazione(){
 
-    // PRODUZIONE
-    let produzioneAnnua = potenza * produzione;
-    let autoconsumo = produzioneAnnua * autoconsumoPerc;
-    let immRete = produzioneAnnua - autoconsumo;
+  const giornoNotte = document.getElementById("giornoNotte").value;
 
-    // RISPARMIO
-    let risparmioAnn = autoconsumo * prezzoEnergia;
+  // kWp presi direttamente dal value del select
+  const kwp = parseFloat(document.getElementById("configurazione").value);
 
-    // OUTPUT RISULTATI
-    document.getElementById("prodAnnua").innerText = produzioneAnnua.toFixed(0) + " kWh";
-    document.getElementById("autoConsumo").innerText = autoconsumo.toFixed(0) + " kWh";
-    document.getElementById("immRete").innerText = immRete.toFixed(0) + " kWh";
-    document.getElementById("risparmioAnn").innerText = risparmioAnn.toFixed(2) + " €";
+  const consumi = parseFloat(document.getElementById("consumi").value);
+  const prezzoConsumo = parseFloat(document.getElementById("prezzoConsumo").value);
+  const prezzoVendita = parseFloat(document.getElementById("prezzoVendita").value);
+  const autocPerc = parseFloat(document.getElementById("autoconsumo").value)/100;
 
-    // PREVENTIVO
-    let risparmioTot = prezzoConc - prezzoNostro;
-    let percRisparmio = (risparmioTot / prezzoConc) * 100;
+  // Produzione base
+  const produzioneBase = giornoNotte === "giorno" ? 1300 : 0;
+  const produzione = produzioneBase * kwp;
 
-    document.getElementById("totNostro").innerText = prezzoNostro.toFixed(2) + " €";
-    document.getElementById("totConc").innerText = prezzoConc.toFixed(2) + " €";
-    document.getElementById("risparmioTot").innerText = risparmioTot.toFixed(2) + " €";
-    document.getElementById("percRisparmio").innerText = percRisparmio.toFixed(1) + "%";
+  // Autoconsumo
+  const autocKw = produzione * autocPerc;
 
-    // TABELLA RENDIMENTO 10 ANNI
-    generaTabellaRendimento(produzioneAnnua, autoconsumo, immRete, prezzoEnergia);
+  // Immissione
+  const immissione = produzione - autocKw;
+
+  // Riduzione kWh
+  const riduzione = autocKw;
+
+  // Risparmio €
+  const risparmio = autocKw * prezzoConsumo;
+
+  // RID €
+  const rid = immissione * prezzoVendita;
+
+  // Rendita annua
+  const renditaAnnua = risparmio + rid;
+
+  // Detrazione fiscale
+  const detrazione = renditaAnnua * 0.5;
+
+  // OUTPUT
+  document.getElementById("produzione").textContent = produzione.toFixed(0);
+  document.getElementById("autocKw").textContent = autocKw.toFixed(0);
+  document.getElementById("riduzione").textContent = riduzione.toFixed(0);
+  document.getElementById("immissione").textContent = immissione.toFixed(0);
+  document.getElementById("risparmio").textContent = risparmio.toFixed(2);
+  document.getElementById("rid").textContent = rid.toFixed(2);
+  document.getElementById("renditaAnnua").textContent = renditaAnnua.toFixed(2);
+  document.getElementById("detrazione").textContent = detrazione.toFixed(2);
+
+  generaTabellaRendimento(produzione, autocKw, immissione, prezzoConsumo);
 }
 
-function generaTabellaRendimento(prodAnnua, autoconsumo, immRete, prezzoEnergia) {
+document.getElementById("btnCalcola").addEventListener("click", calcolaSimulazione);
 
-    let corpo = document.getElementById("rendimentoBody");
-    corpo.innerHTML = "";
+/* ============================
+   PREVENTIVO
+============================ */
 
-    let cumulato = 0;
-    let prezzoEnergiaAnno = prezzoEnergia;
+function creaRiga() {
+  const tbody = document.getElementById("preventivoBody");
 
-    for (let anno = 1; anno <= 10; anno++) {
+  const tr = document.createElement("tr");
 
-        let efficienza = 100 - (anno - 1) * 0.5; // degrado 0.5% annuo
-        let produzioneEff = prodAnnua * (efficienza / 100);
+  tr.innerHTML = `
+      <td><input type="text" class="voce" value="Voce"></td>
+      <td><input type="number" class="qty" value="1"></td>
+      <td>
+          <input type="range" class="slider" min="100" max="5000" value="1000">
+          <p class="sliderVal">1000 €</p>
+      </td>
+      <td class="conc">0</td>
+      <td class="perc">0%</td>
+      <td class="euro">0</td>
+      <td><button class="remove btn-secondary">–</button></td>
+  `;
 
-        let autoconsumoEff = produzioneEff * (autoconsumo / prodAnnua);
-        let immReteEff = produzioneEff - autoconsumoEff;
+  tbody.appendChild(tr);
 
-        let risparmio = autoconsumoEff * prezzoEnergiaAnno;
-        let guadagno = immReteEff * 0.12; // valore medio SSP
+  tr.querySelector(".slider").addEventListener("input", aggiornaPreventivo);
+  tr.querySelector(".qty").addEventListener("input", aggiornaPreventivo);
+  tr.querySelector(".remove").addEventListener("click", () => {
+      tr.remove();
+      aggiornaPreventivo();
+  });
 
-        let totale = risparmio + guadagno;
-        cumulato += totale;
-
-        let riga = `
-            <tr>
-                <td>${anno}</td>
-                <td>${efficienza.toFixed(1)}%</td>
-                <td>${prezzoEnergiaAnno.toFixed(3)} €</td>
-                <td>${risparmio.toFixed(2)} €</td>
-                <td>${guadagno.toFixed(2)} €</td>
-                <td>${totale.toFixed(2)} €</td>
-                <td>${cumulato.toFixed(2)} €</td>
-            </tr>
-        `;
-
-        corpo.innerHTML += riga;
-
-        prezzoEnergiaAnno *= 1.03; // aumento 3% annuo
-    }
-
-    document.getElementById("totale10anni").innerText = cumulato.toFixed(2) + " €";
+  aggiornaPreventivo();
 }
 
-function resetForm() {
-    document.getElementById("potenza").value = 6;
-    document.getElementById("produzione").value = 1350;
-    document.getElementById("autoconsumo").value = 40;
-    document.getElementById("prezzo").value = 0.28;
-    document.getElementById("prezzoConcorrenza").value = 14500;
-    document.getElementById("prezzoNostro").value = 11800;
+document.getElementById("addRow").addEventListener("click", creaRiga);
 
-    document.getElementById("prodAnnua").innerText = "0 kWh";
-    document.getElementById("autoConsumo").innerText = "0 kWh";
-    document.getElementById("immRete").innerText = "0 kWh";
-    document.getElementById("risparmioAnn").innerText = "0 €";
+function aggiornaPreventivo(){
 
-    document.getElementById("totNostro").innerText = "0 €";
-    document.getElementById("totConc").innerText = "0 €";
-    document.getElementById("risparmioTot").innerText = "0 €";
-    document.getElementById("percRisparmio").innerText = "0%";
+  const righe = document.querySelectorAll("#preventivo tbody tr");
 
-    document.getElementById("rendimentoBody").innerHTML = "";
-    document.getElementById("totale10anni").innerText = "0 €";
+  let totaleRS = 0;
+  let totaleConc = 0;
+  let totaleEuro = 0;
+  let sommaPerc = 0;
+
+  righe.forEach(riga => {
+
+    const qty = parseFloat(riga.querySelector(".qty").value);
+    const slider = parseFloat(riga.querySelector(".slider").value);
+
+    riga.querySelector(".sliderVal").textContent = slider + " €";
+
+    const prezzoRS = qty * slider;
+    const prezzoConc = prezzoRS * 1.15;
+    const risparmioEuro = prezzoConc - prezzoRS;
+    const risparmioPerc = (risparmioEuro / prezzoConc) * 100;
+
+    riga.querySelector(".conc").textContent = prezzoConc.toFixed(2);
+    riga.querySelector(".perc").textContent = risparmioPerc.toFixed(1) + "%";
+    riga.querySelector(".euro").textContent = risparmioEuro.toFixed(2);
+
+    totaleRS += prezzoRS;
+    totaleConc += prezzoConc;
+    totaleEuro += risparmioEuro;
+    sommaPerc += risparmioPerc;
+  });
+
+  document.getElementById("totaleRS").textContent = totaleRS.toFixed(2);
+  document.getElementById("totaleConc").textContent = totaleConc.toFixed(2);
+  document.getElementById("totaleEuro").textContent = totaleEuro.toFixed(2);
+  document.getElementById("mediaPerc").textContent = (sommaPerc/righe.length).toFixed(1) + "%";
 }
+
+/* ============================
+   RENDIMENTO 10 ANNI
+============================ */
+
+function generaTabellaRendimento(prodAnnua, autocKw, immRete, prezzoEnergia) {
+
+  let corpo = document.getElementById("rendimentoBody");
+  corpo.innerHTML = "";
+
+  let cumulato = 0;
+  let prezzoEnergiaAnno = prezzoEnergia;
+
+  for (let anno = 1; anno <= 10; anno++) {
+
+      let efficienza = 100 - (anno - 1) * 0.5;
+      let produzioneEff = prodAnnua * (efficienza / 100);
+
+      let autocEff = produzioneEff * (autocKw / prodAnnua);
+      let immEff = produzioneEff - autocEff;
+
+      let risparmio = autocEff * prezzoEnergiaAnno;
+      let guadagno = immEff * 0.12;
+
+      let totale = risparmio + guadagno;
+      cumulato += totale;
+
+      corpo.innerHTML += `
+          <tr>
+              <td>${anno}</td>
+              <td>${efficienza.toFixed(1)}%</td>
+              <td>${prezzoEnergiaAnno.toFixed(3)}</td>
+              <td>${risparmio.toFixed(2)}</td>
+              <td>${guadagno.toFixed(2)}</td>
+              <td>${totale.toFixed(2)}</td>
+              <td>${cumulato.toFixed(2)}</td>
+          </tr>
+      `;
+
+      prezzoEnergiaAnno *= 1.03;
+  }
+
+  document.getElementById("totale10anni").textContent = cumulato.toFixed(2) + " €";
+}
+
+/* CREA UNA RIGA INIZIALE */
+creaRiga();
