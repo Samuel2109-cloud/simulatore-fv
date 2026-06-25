@@ -110,6 +110,33 @@ body {
     background: #003f99;
 }
 
+/* RISULTATI SIMULAZIONE */
+.risultati {
+    background: #eaf2ff;
+    border: 1px solid #c8d8f0;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-top: 25px;
+}
+
+.risultati h2 {
+    color: #003366;
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.result-grid p {
+    font-size: 15px;
+    margin: 4px 0;
+    color: #002b5c;
+}
+
+.result-grid span {
+    font-weight: bold;
+    color: #003366;
+}
+
 /* TABELLE */
 .table {
     width: 100%;
@@ -149,3 +176,14 @@ body {
     background: #003366;
     color: white;
     font-weight: bold;
+    padding: 12px;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .top-buttons {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
