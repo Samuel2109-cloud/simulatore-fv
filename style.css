@@ -167,6 +167,38 @@ output {
 }
 
 /* ============================
+   PARAMETRI SIMULAZIONE
+============================ */
+
+#parametri-simulazione {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.param-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.param-row label {
+  font-weight: 600;
+  color: #0d3c78;
+}
+
+.param-row input[type="range"] {
+  width: 100%;
+}
+
+.param-row output {
+  font-weight: 700;
+  color: #0d3c78;
+  text-align: right;
+}
+
+
+/* ============================
    BOTTONI
 ============================ */
 
