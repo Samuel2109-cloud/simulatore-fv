@@ -11,20 +11,24 @@
 <h1>SIMULATORE IMPIANTO FOTOVOLTAICO</h1>
 
 <!-- ========================= -->
-<!-- TESTATA CON QUADRATI BLU -->
+<!-- TESTATA CON LOGO E SCRITTE -->
 <!-- ========================= -->
 
 <div class="header">
+  <div class="header-top">
+    <img src="img/logo_rinascimento.png" alt="Rinascimento Solare" class="logo">
+  </div>
+
   <div class="header-row">
-    <div class="header-box">Pannelli FV</div>
+    <div class="header-box">PANNELLI FV</div>
     <div class="linea"></div>
-    <div class="header-box">Inverter</div>
+    <div class="header-box">INVERTER</div>
     <div class="linea"></div>
-    <div class="header-box">Casa</div>
+    <div class="header-box">BATTERIA</div>
     <div class="linea"></div>
-    <div class="header-box">Rete</div>
+    <div class="header-box">CASA</div>
     <div class="linea"></div>
-    <div class="header-box">Batteria</div>
+    <div class="header-box">RETE</div>
   </div>
 </div>
 
@@ -58,77 +62,3 @@
 
       <label>Prezzo energia di consumo (€/kWh)</label>
       <input type="number" id="prezzoConsumo" value="0.25" step="0.01">
-
-      <label>Prezzo energia di vendita (€/kWh)</label>
-      <input type="number" id="prezzoVendita" value="0.10" step="0.01">
-
-      <label>Percentuale autoconsumo diretto</label>
-      <div class="autoc-row">
-        <input type="range" id="autoconsumo" min="0" max="100" value="70">
-        <span id="autoconsumoVal">70%</span>
-      </div>
-
-      <button id="btnCalcola">Avvia simulazione</button>
-      <button id="btnReset" class="reset">Reset</button>
-    </div>
-
-    <div class="risultati">
-      <h2>Risultati simulazione</h2>
-      <p>Produzione totale: <span id="produzione"></span> kWh</p>
-      <p>Produzione in autoconsumo: <span id="autocKw"></span> kWh</p>
-      <p>Riduzione: <span id="riduzione"></span> kWh</p>
-      <p>Immissione: <span id="immissione"></span> kWh</p>
-      <p>Risparmio: <span id="risparmio"></span> €</p>
-      <p>RID: <span id="rid"></span> €</p>
-      <p>Rendita annua: <span id="renditaAnnua"></span> €</p>
-      <p>Detrazione fiscale: <span id="detrazione"></span> €</p>
-    </div>
-
-  </div>
-</div>
-
-<!-- ========================= -->
-<!-- PREVENTIVO -->
-<!-- ========================= -->
-
-<div class="section">
-  <h2>Preventivo Rinascimento Solare</h2>
-
-  <table id="preventivo">
-    <thead>
-      <tr>
-        <th>Voce</th>
-        <th>Q.tà</th>
-        <th>Prezzo RS (€)</th>
-        <th>Prezzo Concorrenza (€)</th>
-        <th>Risparmio %</th>
-        <th>Risparmio €</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr><td>Moduli FV</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="1000" max="4000" value="2000" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
-      <tr><td>Inverter</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="500" max="1500" value="800" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
-      <tr><td>Struttura e materiali</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="300" max="1000" value="500" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
-      <tr><td>Sistema di accumulo</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="2000" max="5000" value="3000" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
-      <tr><td>Quadri, cavi e connettori</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="200" max="600" value="300" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
-      <tr><td>Progettazione e pratiche</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="300" max="800" value="500" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
-      <tr><td>Manodopera e installazione</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="500" max="2000" value="1000" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
-    </tbody>
-
-    <tfoot>
-      <tr>
-        <th colspan="2">Totale investimento</th>
-        <th id="totaleRS"></th>
-        <th id="totaleConc"></th>
-        <th id="mediaPerc"></th>
-        <th id="totaleEuro"></th>
-      </tr>
-    </tfoot>
-  </table>
-</div>
-
-<script src="app.js"></script>
-
-</body>
-</html>

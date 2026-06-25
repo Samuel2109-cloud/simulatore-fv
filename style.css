@@ -23,7 +23,7 @@ h1{
 }
 
 /* ========================= */
-/* TESTATA CON QUADRATI BLU */
+/* TESTATA CON LOGO E SCRITTE */
 /* ========================= */
 
 .header{
@@ -33,6 +33,21 @@ h1{
   padding:30px;
   box-shadow:0 4px 20px rgba(0,0,0,0.08);
   margin-bottom:35px;
+}
+
+.header-top{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:25px;
+}
+
+.logo{
+  height:80px;
+  background:white;
+  padding:10px 20px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
 .header-row{
