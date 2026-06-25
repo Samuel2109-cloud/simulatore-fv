@@ -1,21 +1,21 @@
 /* ============================
    AUTOCONSUMO RANGE
 ============================ */
-document.getElementById("autoconsumo").addEventListener("input", function(){
+document.getElementById("autoconsumo").addEventListener("input", function () {
     document.getElementById("autoconsumoVal").textContent = this.value + "%";
 });
 
 /* ============================
    SIMULAZIONE
 ============================ */
-function calcolaSimulazione(){
+function calcolaSimulazione() {
 
     const giornoNotte = document.getElementById("giornoNotte").value;
     const kwp = parseFloat(document.getElementById("configurazione").value);
     const consumi = parseFloat(document.getElementById("consumi").value);
     const prezzoConsumo = parseFloat(document.getElementById("prezzoConsumo").value);
     const prezzoVendita = parseFloat(document.getElementById("prezzoVendita").value);
-    const autocPerc = parseFloat(document.getElementById("autoconsumo").value)/100;
+    const autocPerc = parseFloat(document.getElementById("autoconsumo").value) / 100;
 
     const produzioneBase = giornoNotte === "giorno" ? 1300 : 0;
     const produzione = produzioneBase * kwp;
@@ -29,14 +29,14 @@ function calcolaSimulazione(){
     const renditaAnnua = risparmio + rid;
     const detrazione = renditaAnnua * 0.5;
 
-    document.getElementById("produzione").textContent = produzione.toFixed(0);
-    document.getElementById("autocKw").textContent = autocKw.toFixed(0);
-    document.getElementById("riduzione").textContent = riduzione.toFixed(0);
-    document.getElementById("immissione").textContent = immissione.toFixed(0);
-    document.getElementById("risparmio").textContent = risparmio.toFixed(2);
-    document.getElementById("rid").textContent = rid.toFixed(2);
-    document.getElementById("renditaAnnua").textContent = renditaAnnua.toFixed(2);
-    document.getElementById("detrazione").textContent = detrazione.toFixed(2);
+    document.getElementById("produzione").textContent = produzione.toFixed(0) + " kWh";
+    document.getElementById("autocKw").textContent = autocKw.toFixed(0) + " kWh";
+    document.getElementById("riduzione").textContent = riduzione.toFixed(0) + " kWh";
+    document.getElementById("immissione").textContent = immissione.toFixed(0) + " kWh";
+    document.getElementById("risparmio").textContent = risparmio.toFixed(2) + " €";
+    document.getElementById("rid").textContent = rid.toFixed(2) + " €";
+    document.getElementById("renditaAnnua").textContent = renditaAnnua.toFixed(2) + " €";
+    document.getElementById("detrazione").textContent = detrazione.toFixed(2) + " €";
 
     generaTabellaRendimento(produzione, autocKw, immissione, prezzoConsumo);
 }
@@ -78,7 +78,7 @@ function creaRiga() {
 
 document.getElementById("addRow").addEventListener("click", creaRiga);
 
-function aggiornaPreventivo(){
+function aggiornaPreventivo() {
 
     const righe = document.querySelectorAll("#preventivo tbody tr");
 
