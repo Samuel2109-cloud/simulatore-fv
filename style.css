@@ -1,279 +1,125 @@
-/* ============================
-   GENERALE
-============================ */
-
-body {
+/* RESET BASE */
+* {
   margin: 0;
   padding: 0;
-  background: #f3f6fb;
-  font-family: system-ui, sans-serif;
-  color: #1a1a1a;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#container {
-  max-width: 1400px;
-  margin: 0 auto;
+body {
+  background: #f4f4f4;
   padding: 20px;
+  color: #222;
 }
 
+/* TITOLO PRINCIPALE */
 h1 {
   text-align: center;
-  color: #0d3c78;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-/* ============================
-   LOGO CENTRALE
-============================ */
-
-#header-main {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-#logo {
-  height: 110px;
-  display: block;
-  margin: 0 auto 10px auto;
-}
-
-/* ============================
-   SCHEMA IMPIANTO
-============================ */
-
-#impianto {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  margin-bottom: 30px;
-}
-
-.blocco {
-  width: 120px;
-  height: 80px;
-  border-radius: 10px;
-  background: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.10);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.blocco .titolo {
-  font-size: 14px;
-  margin-bottom: 4px;
-  font-weight: 600;
-}
-
-.blocco .icona {
-  font-size: 24px;
-}
-
-.freccia {
-  font-size: 28px;
+  margin-bottom: 25px;
+  font-size: 32px;
   font-weight: bold;
-  color: #0d3c78;
+  color: #1a4d8f;
 }
 
-/* ============================
-   LAYOUT PRINCIPALE
-============================ */
-
-#layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-  align-items: start;
+/* CONTENITORE GENERALE */
+.container {
+  max-width: 1100px;
+  margin: auto;
 }
 
-#col-sx, #col-dx {
-  background: #ffffff;
+/* SEZIONI */
+.section {
+  background: white;
   padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
 }
 
-h2 {
-  margin-top: 0;
-  color: #0d3c78;
+.section h2 {
+  margin-bottom: 15px;
+  color: #1a4d8f;
+  font-size: 22px;
 }
 
-/* ============================
-   PARAMETRI SIMULAZIONE
-============================ */
-
-#parametri-simulazione {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+/* PARAMETRI E RISULTATI IN RIGA SEMPLICE */
+.parametri label,
+.risultati label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
 }
 
-.param-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.param-row label {
-  font-weight: 600;
-  color: #0d3c78;
-  font-size: 14px;
-}
-
-.param-row input[type="number"],
-.param-row input[type="text"] {
+.parametri input,
+.risultati input {
   width: 100%;
-  padding: 6px 8px;
+  padding: 10px;
+  margin-top: 5px;
   border-radius: 6px;
   border: 1px solid #ccc;
+  font-size: 16px;
 }
 
-.param-row input[type="range"] {
+/* RANGE AUTOCONSUMO */
+#autoconsumo {
   width: 100%;
 }
 
-.param-row output {
-  font-weight: 700;
-  color: #0d3c78;
-  text-align: right;
-  font-size: 13px;
+#autoconsumoVal {
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 5px;
 }
 
-/* ============================
-   RISULTATI SIMULAZIONE
-============================ */
-
-#risultati-simulazione {
-  margin-top: 20px;
-}
-
-#risultati-simulazione p {
-  margin: 6px 0;
-  font-size: 14px;
-}
-
-/* ============================
-   BLOCCHI
-============================ */
-
-.blocco {
-  background: #f7faff;
-  border: 1px solid #dce7f7;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-/* ============================
-   SLIDER + VALORE
-============================ */
-
-.slider-cell {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-
-.slider-cell span {
-  min-width: 60px;
-  text-align: right;
-  font-weight: 600;
-  color: #0d3c78;
-}
-
-/* ============================
-   BOTTONI
-============================ */
-
+/* BOTTONI */
 button {
-  padding: 10px 18px;
+  margin-top: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
   border: none;
   border-radius: 6px;
-  background: #0d3c78;
-  color: white;
-  font-weight: 600;
   cursor: pointer;
-  margin-top: 10px;
+  background: #1a4d8f;
+  color: white;
+  transition: 0.2s;
 }
 
 button:hover {
-  background: #0a2f5c;
+  background: #163f75;
 }
 
-/* ============================
-   TABELLA PREVENTIVO
-============================ */
+button.reset {
+  background: #b30000;
+}
 
-#tab-preventivo {
+button.reset:hover {
+  background: #7a0000;
+}
+
+/* TABELLA RENDIMENTO */
+table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
+}
+
+table th {
+  background: #1a4d8f;
+  color: white;
+  padding: 10px;
   font-size: 14px;
 }
 
-#tab-preventivo th {
-  background: #e8f0ff;
+table td {
   padding: 10px;
-  border: 1px solid #cdd9f0;
-}
-
-#tab-preventivo td {
-  padding: 8px;
-  border: 1px solid #dce3f2;
-  text-align: center;
-}
-
-#tab-preventivo input[type="number"] {
-  width: 70px;
-}
-
-#tab-preventivo input[type="range"] {
-  width: 140px;
-}
-
-#tab-preventivo tfoot th {
-  background: #d9e7ff;
-  font-size: 15px;
-  padding: 10px;
-}
-
-/* ============================
-   TABELLA RENDIMENTO 25 ANNI
-============================ */
-
-#tab-rendimento {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 25px;
+  border-bottom: 1px solid #ddd;
   font-size: 14px;
 }
 
-#tab-rendimento th {
+table tr:nth-child(even) {
+  background: #f2f6ff;
+}
+
+table tr:hover {
   background: #e8f0ff;
-  padding: 10px;
-  border: 1px solid #cdd9f0;
-}
-
-#tab-rendimento td {
-  padding: 8px;
-  border: 1px solid #dce3f2;
-  text-align: center;
-}
-
-/* ============================
-   RESPONSIVE
-============================ */
-
-@media (max-width: 900px) {
-  #layout {
-    grid-template-columns: 1fr;
-  }
-
-  #impianto {
-    flex-wrap: wrap;
-  }
 }
