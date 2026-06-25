@@ -53,14 +53,37 @@
         </select>
       </label><br>
 
-      <label>Consumi annui attuali (kWh): <input type="number" id="inp-consumi" value="4000"></label><br>
-      <label>Prezzo energia di consumo (€ / kWh): <input type="number" step="0.01" id="inp-prezzo-consumo" value="0.25"></label><br>
-      <label>Prezzo energia di vendita (€ / kWh): <input type="number" step="0.01" id="inp-prezzo-vendita" value="0.10"></label><br>
-      <label>Totale energia risparmiata (€): <input type="number" id="inp-risparmio" value="1600"></label><br>
-      <label>Totale energia rimborsata (€): <input type="number" id="inp-rimborso" value="320"></label><br>
-      <label>Rendita annua fotovoltaico (€): <input type="number" id="inp-rendita-annua" value="1956"></label><br>
-      <label>Detrazione fiscale annua (€): <input type="number" id="inp-detrazione" value="545"></label><br>
-      <label>Rendita in 25 anni (€): <input type="number" id="inp-rendita-25" value="54350"></label><br>
+      <label>Consumi annui attuali (kWh): 
+        <input type="number" id="inp-consumi" value="4000">
+      </label><br>
+
+      <label>Prezzo energia di consumo (€ / kWh): 
+        <input type="number" step="0.01" id="inp-prezzo-consumo" value="0.25">
+      </label><br>
+
+      <label>Prezzo energia di vendita (€ / kWh): 
+        <input type="number" step="0.01" id="inp-prezzo-vendita" value="0.10">
+      </label><br>
+
+      <label>Totale energia risparmiata (€): 
+        <input type="number" id="inp-risparmio" value="1600">
+      </label><br>
+
+      <label>Totale energia RID (€): 
+        <input type="number" id="inp-rid" value="320">
+      </label><br>
+
+      <label>Rendita annua fotovoltaico (€): 
+        <input type="number" id="inp-rendita-annua" value="1956">
+      </label><br>
+
+      <label>Detrazione fiscale annua (€): 
+        <input type="number" id="inp-detrazione" value="545">
+      </label><br>
+
+      <label>Rendita in 25 anni (€): 
+        <input type="number" id="inp-rendita-25" value="54350">
+      </label><br>
 
       <button type="button" id="btn-avvia">Avvia simulazione</button>
       <button type="reset" id="btn-reset">Reset</button>
@@ -70,11 +93,14 @@
 
     <div id="output-area">
       <h2>Risultati simulazione</h2>
+
       <div>Produzione: <span id="prod"></span> kWh</div>
       <div>Autoconsumo: <span id="auto"></span> kWh</div>
       <div>Immissione: <span id="imm"></span> kWh</div>
+
       <div>Risparmio: <span id="risp"></span> €</div>
-      <div>Rimborso SSP: <span id="ssp"></span> €</div>
+      <div>RID: <span id="rid"></span> €</div>
+
       <div>Rendita annua: <span id="rend-annua"></span> €</div>
       <div>Detrazione fiscale: <span id="detrazione"></span> €</div>
       <div>Rendita 25 anni: <span id="rend-25"></span> €</div>

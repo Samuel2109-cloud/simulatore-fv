@@ -8,7 +8,7 @@ document.getElementById("btn-avvia").addEventListener("click", () => {
         prezzoConsumo: +document.getElementById("inp-prezzo-consumo").value,
         prezzoVendita: +document.getElementById("inp-prezzo-vendita").value,
         risparmio: +document.getElementById("inp-risparmio").value,
-        rimborso: +document.getElementById("inp-rimborso").value,
+        rid: +document.getElementById("inp-rid").value,   // ← CAMBIATO DA SSP A RID
         renditaAnnua: +document.getElementById("inp-rendita-annua").value,
         detrazione: +document.getElementById("inp-detrazione").value,
         rendita25: +document.getElementById("inp-rendita-25").value
@@ -75,7 +75,7 @@ function aggiornaSimulazione(d) {
     animaNumero("imm", immissione);
 
     animaNumero("risp", d.risparmio);
-    animaNumero("ssp", d.rimborso);
+    animaNumero("rid", d.rid);  // ← CAMBIATO DA SSP A RID
     animaNumero("rend-annua", d.renditaAnnua);
     animaNumero("detrazione", d.detrazione);
     animaNumero("rend-25", d.rendita25);
