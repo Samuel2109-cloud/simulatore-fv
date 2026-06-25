@@ -9,21 +9,22 @@
 
 <body>
 
-    <!-- HEADER -->
-    <div class="header">
-        <h1>SIMULATORE IMPIANTO FOTOVOLTAICO</h1>
+<div class="container">
 
-        <div class="icone-linea">
-            <button>PANNELLI FV</button>
-            <button>INVERTER</button>
-            <button>BATTERIA</button>
-            <button>CASA</button>
-            <button>RETE</button>
-        </div>
+    <!-- HEADER -->
+    <h1 class="titolo">SIMULATORE IMPIANTO FOTOVOLTAICO</h1>
+
+    <div class="top-buttons">
+        <button>PANNELLI FV</button>
+        <button>INVERTER</button>
+        <button>BATTERIA</button>
+        <button>CASA</button>
+        <button>RETE</button>
     </div>
 
     <!-- PARAMETRI -->
     <div class="parametri">
+
         <label>Selettore giorno/notte</label>
         <select id="giornoNotte">
             <option value="giorno">Giorno 🌞</option>
@@ -53,143 +54,141 @@
     </div>
 
     <!-- PREVENTIVO -->
-    <div class="card">
-        <h2>Preventivo Rinascimento Solare</h2>
+    <h2 class="sottotitolo">Preventivo Rinascimento Solare</h2>
 
-        <table class="table" id="preventivo">
-            <thead>
-                <tr>
-                    <th>Voce</th>
-                    <th>Q.tà</th>
-                    <th>Prezzo RS (€)</th>
-                    <th>Prezzo Concorrenza (€)</th>
-                    <th>Risparmio %</th>
-                    <th>Risparmio €</th>
-                </tr>
-            </thead>
+    <table class="table" id="preventivo">
+        <thead>
+            <tr>
+                <th>Voce</th>
+                <th>Q.tà</th>
+                <th>Prezzo RS (€)</th>
+                <th>Prezzo Concorrenza (€)</th>
+                <th>Risparmio %</th>
+                <th>Risparmio €</th>
+            </tr>
+        </thead>
 
-            <tbody id="preventivoBody">
+        <tbody>
 
-                <tr>
-                    <td>Moduli FV</td>
-                    <td><input type="number" class="qty" value="1"></td>
-                    <td>
-                        <input type="range" class="slider" min="500" max="5000" value="2300">
-                        <p class="sliderVal">2300 €</p>
-                    </td>
-                    <td class="conc">0</td>
-                    <td class="perc">0%</td>
-                    <td class="euro">0</td>
-                </tr>
+            <tr>
+                <td>Moduli FV</td>
+                <td><input type="number" class="qty" value="1"></td>
+                <td>
+                    <input type="range" class="slider" min="500" max="5000" value="2300">
+                    <p class="sliderVal">2300 €</p>
+                </td>
+                <td class="conc">0</td>
+                <td class="perc">0%</td>
+                <td class="euro">0</td>
+            </tr>
 
-                <tr>
-                    <td>Inverter</td>
-                    <td><input type="number" class="qty" value="1"></td>
-                    <td>
-                        <input type="range" class="slider" min="300" max="3000" value="920">
-                        <p class="sliderVal">920 €</p>
-                    </td>
-                    <td class="conc">0</td>
-                    <td class="perc">0%</td>
-                    <td class="euro">0</td>
-                </tr>
+            <tr>
+                <td>Inverter</td>
+                <td><input type="number" class="qty" value="1"></td>
+                <td>
+                    <input type="range" class="slider" min="300" max="3000" value="920">
+                    <p class="sliderVal">920 €</p>
+                </td>
+                <td class="conc">0</td>
+                <td class="perc">0%</td>
+                <td class="euro">0</td>
+            </tr>
 
-                <tr>
-                    <td>Struttura e materiali</td>
-                    <td><input type="number" class="qty" value="1"></td>
-                    <td>
-                        <input type="range" class="slider" min="200" max="2000" value="575">
-                        <p class="sliderVal">575 €</p>
-                    </td>
-                    <td class="conc">0</td>
-                    <td class="perc">0%</td>
-                    <td class="euro">0</td>
-                </tr>
+            <tr>
+                <td>Struttura e materiali</td>
+                <td><input type="number" class="qty" value="1"></td>
+                <td>
+                    <input type="range" class="slider" min="200" max="2000" value="575">
+                    <p class="sliderVal">575 €</p>
+                </td>
+                <td class="conc">0</td>
+                <td class="perc">0%</td>
+                <td class="euro">0</td>
+            </tr>
 
-                <tr>
-                    <td>Sistema di accumulo</td>
-                    <td><input type="number" class="qty" value="1"></td>
-                    <td>
-                        <input type="range" class="slider" min="1000" max="8000" value="3450">
-                        <p class="sliderVal">3450 €</p>
-                    </td>
-                    <td class="conc">0</td>
-                    <td class="perc">0%</td>
-                    <td class="euro">0</td>
-                </tr>
+            <tr>
+                <td>Sistema di accumulo</td>
+                <td><input type="number" class="qty" value="1"></td>
+                <td>
+                    <input type="range" class="slider" min="1000" max="8000" value="3450">
+                    <p class="sliderVal">3450 €</p>
+                </td>
+                <td class="conc">0</td>
+                <td class="perc">0%</td>
+                <td class="euro">0</td>
+            </tr>
 
-                <tr>
-                    <td>Quadri, cavi e connettori</td>
-                    <td><input type="number" class="qty" value="1"></td>
-                    <td>
-                        <input type="range" class="slider" min="100" max="1000" value="345">
-                        <p class="sliderVal">345 €</p>
-                    </td>
-                    <td class="conc">0</td>
-                    <td class="perc">0%</td>
-                    <td class="euro">0</td>
-                </tr>
+            <tr>
+                <td>Quadri, cavi e connettori</td>
+                <td><input type="number" class="qty" value="1"></td>
+                <td>
+                    <input type="range" class="slider" min="100" max="1000" value="345">
+                    <p class="sliderVal">345 €</p>
+                </td>
+                <td class="conc">0</td>
+                <td class="perc">0%</td>
+                <td class="euro">0</td>
+            </tr>
 
-                <tr>
-                    <td>Progettazione e pratiche</td>
-                    <td><input type="number" class="qty" value="1"></td>
-                    <td>
-                        <input type="range" class="slider" min="200" max="2000" value="575">
-                        <p class="sliderVal">575 €</p>
-                    </td>
-                    <td class="conc">0</td>
-                    <td class="perc">0%</td>
-                    <td class="euro">0</td>
-                </tr>
+            <tr>
+                <td>Progettazione e pratiche</td>
+                <td><input type="number" class="qty" value="1"></td>
+                <td>
+                    <input type="range" class="slider" min="200" max="2000" value="575">
+                    <p class="sliderVal">575 €</p>
+                </td>
+                <td class="conc">0</td>
+                <td class="perc">0%</td>
+                <td class="euro">0</td>
+            </tr>
 
-                <tr>
-                    <td>Manodopera e installazione</td>
-                    <td><input type="number" class="qty" value="1"></td>
-                    <td>
-                        <input type="range" class="slider" min="500" max="3000" value="1150">
-                        <p class="sliderVal">1150 €</p>
-                    </td>
-                    <td class="conc">0</td>
-                    <td class="perc">0%</td>
-                    <td class="euro">0</td>
-                </tr>
+            <tr>
+                <td>Manodopera e installazione</td>
+                <td><input type="number" class="qty" value="1"></td>
+                <td>
+                    <input type="range" class="slider" min="500" max="3000" value="1150">
+                    <p class="sliderVal">1150 €</p>
+                </td>
+                <td class="conc">0</td>
+                <td class="perc">0%</td>
+                <td class="euro">0</td>
+            </tr>
 
-            </tbody>
+        </tbody>
 
-            <tfoot>
-                <tr class="totale">
-                    <td colspan="2">Totale investimento</td>
-                    <td id="totaleRS">0</td>
-                    <td id="totaleConc">0</td>
-                    <td id="mediaPerc">0%</td>
-                    <td id="totaleEuro">0</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
+        <tfoot>
+            <tr class="totale">
+                <td colspan="2">Totale investimento</td>
+                <td id="totaleRS">0</td>
+                <td id="totaleConc">0</td>
+                <td id="mediaPerc">0%</td>
+                <td id="totaleEuro">0</td>
+            </tr>
+        </tfoot>
+    </table>
 
-    <!-- TABELLA RENDIMENTO 10 ANNI (STATICA) -->
-    <div class="card">
-        <h2>Rendimento proiettato nei 10 anni</h2>
+    <!-- TABELLA RENDIMENTO 10 ANNI -->
+    <h2 class="sottotitolo">Rendimento proiettato nei 10 anni</h2>
 
-        <table class="table" id="rendimento10">
-            <thead>
-                <tr>
-                    <th>Anno</th>
-                    <th>Efficienza impianto (%)</th>
-                    <th>Valore energia (€/kWh)</th>
-                    <th>Risparmio (€)</th>
-                    <th>Guadagno (€)</th>
-                    <th>Totale (€)</th>
-                    <th>Cumulato (€)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- La compili tu manualmente -->
-            </tbody>
-        </table>
-    </div>
+    <table class="table" id="rendimento10">
+        <thead>
+            <tr>
+                <th>Anno</th>
+                <th>Efficienza (%)</th>
+                <th>Valore energia (€/kWh)</th>
+                <th>Risparmio (€)</th>
+                <th>Guadagno (€)</th>
+                <th>Totale (€)</th>
+                <th>Cumulato (€)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- La compili tu -->
+        </tbody>
+    </table>
 
-    <script src="app.js"></script>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>

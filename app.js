@@ -1,6 +1,6 @@
-/* ============================================
-   AGGIORNAMENTO SLIDER AUTOCONSUMO
-============================================ */
+/* ============================================================
+   SLIDER AUTOCONSUMO (solo aggiornamento testo)
+============================================================ */
 const autocSlider = document.getElementById("autoconsumoPerc");
 const autocVal = document.getElementById("autoconsumoVal");
 
@@ -9,22 +9,23 @@ autocSlider.addEventListener("input", () => {
 });
 
 
-/* ============================================
-   SIMULAZIONE (SEMPLICE, COME NELLO SCREEN)
-============================================ */
+/* ============================================================
+   SIMULAZIONE (SEMPLICE, COME RICHIESTO)
+   Nessun output grafico → solo conferma
+============================================================ */
 document.getElementById("btnCalcola").addEventListener("click", () => {
-    // Lo screen non mostra risultati → nessun output
     alert("Simulazione avviata.");
 });
 
 
-/* ============================================
-   PREVENTIVO — RIGHE FISSE
-   Q.tà = input number
-   Prezzo RS = slider
-   Prezzo concorrenza = RS + 15%
-   Risparmio % e € calcolati
-============================================ */
+/* ============================================================
+   PREVENTIVO — FUNZIONAMENTO COMPLETO
+   - Q.tà = input number
+   - Prezzo RS = slider
+   - Prezzo concorrenza = RS + 15%
+   - Risparmio % e € calcolati automaticamente
+============================================================ */
+
 function aggiornaPreventivo() {
 
     const righe = document.querySelectorAll("#preventivo tbody tr");
@@ -36,8 +37,8 @@ function aggiornaPreventivo() {
 
     righe.forEach(riga => {
 
-        const qty = parseFloat(riga.querySelector(".qty").value);
-        const slider = parseFloat(riga.querySelector(".slider").value);
+        const qty = parseFloat(riga.querySelector(".qty").value) || 0;
+        const slider = parseFloat(riga.querySelector(".slider").value) || 0;
 
         // Mostra valore slider
         riga.querySelector(".sliderVal").textContent = slider + " €";
@@ -46,10 +47,9 @@ function aggiornaPreventivo() {
         const prezzoRS = qty * slider;
         const prezzoConc = prezzoRS * 1.15;
         const risparmioEuro = prezzoConc - prezzoRS;
-        const risparmioPerc = (risparmioEuro / prezzoConc) * 100;
+        const risparmioPerc = prezzoConc > 0 ? (risparmioEuro / prezzoConc) * 100 : 0;
 
         // Output riga
-        riga.querySelector(".rs").textContent = prezzoRS.toFixed(2);
         riga.querySelector(".conc").textContent = prezzoConc.toFixed(2);
         riga.querySelector(".euro").textContent = risparmioEuro.toFixed(2);
         riga.querySelector(".perc").textContent = risparmioPerc.toFixed(1) + "%";
@@ -68,7 +68,7 @@ function aggiornaPreventivo() {
     document.getElementById("mediaPerc").textContent = (sommaPerc / righe.length).toFixed(1) + "%";
 }
 
-// Attiva aggiornamento
+// Attiva aggiornamento dinamico
 document.querySelectorAll(".slider").forEach(slider => {
     slider.addEventListener("input", aggiornaPreventivo);
 });
@@ -80,8 +80,9 @@ document.querySelectorAll(".qty").forEach(qty => {
 aggiornaPreventivo();
 
 
-/* ============================================
+/* ============================================================
    TABELLA RENDIMENTO 10 ANNI — STATICA
-   (NESSUN CALCOLO)
-============================================ */
+   Nessun JS richiesto
+============================================================ */
+// Vuota di proposito
 
