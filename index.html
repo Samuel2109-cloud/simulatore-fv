@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Simulatore + Preventivo FV</title>
+  <title>SIMULATORE IMPIANTO FOTOVOLTAICO</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -10,35 +10,42 @@
 
 <div id="main-container">
 
-  <h1 id="titolo">Simulatore Fotovoltaico + Preventivo Rinascimento Solare</h1>
+  <h1 id="titolo">SIMULATORE IMPIANTO FOTOVOLTAICO</h1>
+
+  <!-- SCHEMA IMPIANTO -->
+  <div id="impianto">
+    <div class="blocco"><div class="titolo">Pannelli FV</div><div class="icona">🔆</div></div>
+    <div class="freccia"></div>
+    <div class="blocco"><div class="titolo">Inverter</div><div class="icona">⚡</div></div>
+    <div class="freccia"></div>
+    <div class="blocco"><div class="titolo">Casa</div><div class="icona">🏠</div></div>
+    <div class="freccia"></div>
+    <div class="blocco"><div class="titolo">Rete</div><div class="icona">🔌</div></div>
+    <div class="freccia"></div>
+    <div class="blocco"><div class="titolo">Batteria</div><div id="batt-level"></div></div>
+  </div>
 
   <!-- LAYOUT A DUE COLONNE -->
   <div id="layout">
 
-    <!-- ============================
-         COLONNA SINISTRA
-    ============================= -->
+    <!-- COLONNA SINISTRA -->
     <div id="col-sx">
 
       <h2>Parametri Simulazione</h2>
 
       <div class="blocco">
-
         <label>PERCENTUALE DI AUTOCONSUMO DIRETTO (%)
-          <input type="range" id="autoconsumo" min="0" max="100" value="70"
-                 oninput="this.nextElementSibling.value=this.value">
+          <input type="range" id="autoconsumo" min="0" max="100" value="70" oninput="this.nextElementSibling.value=this.value">
           <output>70</output>
         </label>
 
         <label>PRODUZIONE ANNUA STIMATA IMPIANTO (kWh)
-          <input type="range" id="produzione" min="1000" max="12000" value="4000"
-                 oninput="this.nextElementSibling.value=this.value">
+          <input type="range" id="produzione" min="1000" max="12000" value="4000" oninput="this.nextElementSibling.value=this.value">
           <output>4000</output>
         </label>
 
         <label>TASSO ANNUO DI INFLAZIONE ENERGETICA (%)
-          <input type="range" id="inflazione" min="0" max="10" step="0.1" value="3"
-                 oninput="this.nextElementSibling.value=this.value">
+          <input type="range" id="inflazione" min="0" max="10" step="0.1" value="3" oninput="this.nextElementSibling.value=this.value">
           <output>3</output>
         </label>
 
@@ -63,9 +70,7 @@
 
     </div>
 
-    <!-- ============================
-         COLONNA DESTRA
-    ============================= -->
+    <!-- COLONNA DESTRA -->
     <div id="col-dx">
 
       <h2>Preventivo Rinascimento Solare</h2>
@@ -83,11 +88,15 @@
         </thead>
 
         <tbody>
-
           <tr data-voce="moduli">
             <td>Moduli fotovoltaici</td>
             <td><input type="number" id="q_moduli" value="1"></td>
-            <td><input type="range" id="p_moduli" min="500" max="6000" value="2000" oninput="aggiornaPreventivo()"></td>
+            <td>
+              <div class="slider-cell">
+                <input type="range" id="p_moduli" min="500" max="6000" value="2000" oninput="aggiornaPreventivo()">
+                <span id="v_moduli" class="valore-slider">2000</span>
+              </div>
+            </td>
             <td id="c_moduli"></td>
             <td id="r_moduli_perc"></td>
             <td id="r_moduli_euro"></td>
@@ -96,7 +105,12 @@
           <tr data-voce="inverter">
             <td>Inverter</td>
             <td><input type="number" id="q_inverter" value="1"></td>
-            <td><input type="range" id="p_inverter" min="300" max="3000" value="800" oninput="aggiornaPreventivo()"></td>
+            <td>
+              <div class="slider-cell">
+                <input type="range" id="p_inverter" min="300" max="3000" value="800" oninput="aggiornaPreventivo()">
+                <span id="v_inverter" class="valore-slider">800</span>
+              </div>
+            </td>
             <td id="c_inverter"></td>
             <td id="r_inverter_perc"></td>
             <td id="r_inverter_euro"></td>
@@ -105,7 +119,12 @@
           <tr data-voce="strutture">
             <td>Strutture e materiali</td>
             <td><input type="number" id="q_strutture" value="1"></td>
-            <td><input type="range" id="p_strutture" min="200" max="2000" value="500" oninput="aggiornaPreventivo()"></td>
+            <td>
+              <div class="slider-cell">
+                <input type="range" id="p_strutture" min="200" max="2000" value="500" oninput="aggiornaPreventivo()">
+                <span id="v_strutture" class="valore-slider">500</span>
+              </div>
+            </td>
             <td id="c_strutture"></td>
             <td id="r_strutture_perc"></td>
             <td id="r_strutture_euro"></td>
@@ -114,7 +133,12 @@
           <tr data-voce="accumulo">
             <td>Sistema di accumulo</td>
             <td><input type="number" id="q_accumulo" value="1"></td>
-            <td><input type="range" id="p_accumulo" min="1000" max="10000" value="3000" oninput="aggiornaPreventivo()"></td>
+            <td>
+              <div class="slider-cell">
+                <input type="range" id="p_accumulo" min="1000" max="10000" value="3000" oninput="aggiornaPreventivo()">
+                <span id="v_accumulo" class="valore-slider">3000</span>
+              </div>
+            </td>
             <td id="c_accumulo"></td>
             <td id="r_accumulo_perc"></td>
             <td id="r_accumulo_euro"></td>
@@ -123,7 +147,12 @@
           <tr data-voce="quadri">
             <td>Quadri, cavi e connettori</td>
             <td><input type="number" id="q_quadri" value="1"></td>
-            <td><input type="range" id="p_quadri" min="100" max="1500" value="300" oninput="aggiornaPreventivo()"></td>
+            <td>
+              <div class="slider-cell">
+                <input type="range" id="p_quadri" min="100" max="1500" value="300" oninput="aggiornaPreventivo()">
+                <span id="v_quadri" class="valore-slider">300</span>
+              </div>
+            </td>
             <td id="c_quadri"></td>
             <td id="r_quadri_perc"></td>
             <td id="r_quadri_euro"></td>
@@ -132,61 +161,7 @@
           <tr data-voce="progettazione">
             <td>Progettazione e pratiche</td>
             <td><input type="number" id="q_progettazione" value="1"></td>
-            <td><input type="range" id="p_progettazione" min="200" max="2000" value="500" oninput="aggiornaPreventivo()"></td>
-            <td id="c_progettazione"></td>
-            <td id="r_progettazione_perc"></td>
-            <td id="r_progettazione_euro"></td>
-          </tr>
-
-          <tr data-voce="manodopera">
-            <td>Manodopera e installazione</td>
-            <td><input type="number" id="q_manodopera" value="1"></td>
-            <td><input type="range" id="p_manodopera" min="500" max="5000" value="1000" oninput="aggiornaPreventivo()"></td>
-            <td id="c_manodopera"></td>
-            <td id="r_manodopera_perc"></td>
-            <td id="r_manodopera_euro"></td>
-          </tr>
-
-        </tbody>
-
-        <tfoot>
-          <tr>
-            <th colspan="2">Totale investimento</th>
-            <th id="tot_rinascimento"></th>
-            <th id="tot_concorrenza"></th>
-            <th id="tot_risparmio_perc"></th>
-            <th id="tot_risparmio_euro"></th>
-          </tr>
-        </tfoot>
-
-      </table>
-
-    </div>
-
-  </div>
-
-  <!-- ============================
-       RENDIMENTO 25 ANNI
-  ============================= -->
-  <h2>Rendimento Economico a 25 anni</h2>
-
-  <table id="tab-rendimento">
-    <thead>
-      <tr>
-        <th>Anno</th>
-        <th>Efficienza (%)</th>
-        <th>Valore energia (€/kWh)</th>
-        <th>Risparmio autoconsumo (€)</th>
-        <th>Guadagno rete (€)</th>
-        <th>Totale annuo (€)</th>
-        <th>Cumulato (€)</th>
-      </tr>
-    </thead>
-    <tbody id="tab-rendimento-body"></tbody>
-  </table>
-
-</div>
-
-<script src="app.js"></script>
-</body>
-</html>
+            <td>
+              <div class="slider-cell">
+                <input type="range" id="p_progettazione" min="200" max="2000" value="500" oninput="aggiornaPreventivo()">
+                <span id="v_progettazione" class="valore-slider">500</span>
