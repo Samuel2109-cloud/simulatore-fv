@@ -12,7 +12,67 @@ body {
   color: #222;
 }
 
+/* ----------------------------- */
+/* TESTATA GRAFICA */
+/* ----------------------------- */
+
+.header {
+  width: 100%;
+  background: linear-gradient(to bottom, #dff1ff, #f4faff);
+  padding: 25px 10px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.header-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 110px;
+}
+
+.header-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 5px;
+}
+
+.header-item span {
+  font-size: 14px;
+  font-weight: bold;
+  color: #1a4d8f;
+}
+
+.arrow {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1a4d8f;
+}
+
+/* Responsive testata */
+@media (max-width: 900px) {
+  .header-row {
+    justify-content: center;
+  }
+  .arrow {
+    display: none;
+  }
+}
+
+/* ----------------------------- */
 /* TITOLO PRINCIPALE */
+/* ----------------------------- */
+
 h1 {
   text-align: center;
   margin-bottom: 25px;
@@ -21,13 +81,19 @@ h1 {
   color: #1a4d8f;
 }
 
+/* ----------------------------- */
 /* CONTENITORE GENERALE */
+/* ----------------------------- */
+
 .container {
   max-width: 1100px;
   margin: auto;
 }
 
+/* ----------------------------- */
 /* SEZIONI */
+/* ----------------------------- */
+
 .section {
   background: white;
   padding: 20px;
@@ -42,7 +108,10 @@ h1 {
   font-size: 22px;
 }
 
-/* PARAMETRI E RISULTATI IN RIGA SEMPLICE */
+/* ----------------------------- */
+/* PARAMETRI E RISULTATI */
+/* ----------------------------- */
+
 .parametri label,
 .risultati label {
   display: block;
@@ -71,7 +140,10 @@ h1 {
   margin-top: 5px;
 }
 
+/* ----------------------------- */
 /* BOTTONI */
+/* ----------------------------- */
+
 button {
   margin-top: 20px;
   padding: 12px 20px;
@@ -96,7 +168,10 @@ button.reset:hover {
   background: #7a0000;
 }
 
+/* ----------------------------- */
 /* TABELLA RENDIMENTO */
+/* ----------------------------- */
+
 table {
   width: 100%;
   border-collapse: collapse;

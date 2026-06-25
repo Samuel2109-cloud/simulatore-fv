@@ -55,31 +55,3 @@ function generaTabella(autoconsumoEnergia, immissioneRete, prezzoConsumo, prezzo
       <td>${guadagnoReteAnno.toFixed(2)}</td>
       <td>${totaleAnno.toFixed(2)}</td>
       <td>${cumulato.toFixed(2)}</td>
-    `;
-
-    tbody.appendChild(row);
-  }
-}
-
-// Pulsante Avvia simulazione
-document.getElementById("btnCalcola").addEventListener("click", calcolaSimulazione);
-
-// Pulsante Reset
-document.getElementById("btnReset").addEventListener("click", function () {
-  document.getElementById("consumi").value = 4000;
-  document.getElementById("prezzoConsumo").value = 0.25;
-  document.getElementById("prezzoVendita").value = 0.10;
-  document.getElementById("autoconsumo").value = 70;
-  document.getElementById("autoconsumoVal").textContent = "70%";
-  document.getElementById("produzione").value = 4800;
-  document.getElementById("inflazione").value = 3;
-
-  document.getElementById("risparmioBolletta").value = "";
-  document.getElementById("guadagnoRete").value = "";
-  document.getElementById("totaleAnnuale").value = "";
-
-  document.querySelector("#tabellaRendimento tbody").innerHTML = "";
-});
-
-// Calcolo iniziale automatico
-calcolaSimulazione();
