@@ -1,44 +1,187 @@
 /* RESET */
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-/* BODY */
-body{background:#f4f7fb;padding:20px;color:#1a1a1a}
+body {
+    background: #f4f7fb;
+    padding: 20px;
+    color: #1a1a1a;
+}
 
 /* HEADER */
-.header{text-align:center;margin-bottom:30px}
-.logo{width:180px;margin-bottom:10px}
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 180px;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.header p {
+    font-size: 16px;
+    color: #444;
+}
 
 /* CARD */
-.card{background:white;padding:25px;margin-bottom:25px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08)}
-.card h2{margin-bottom:20px;color:#003366}
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
 
-/* GRID */
-.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card h2 {
+    margin-bottom: 20px;
+    color: #003366;
+}
 
-/* INPUTS */
-label{font-weight:bold;margin-bottom:5px;display:block}
-input,select{width:100%;padding:10px;border:1px solid #bbb;border-radius:6px;font-size:15px}
+/* GRID INPUTS */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 15px;
+}
 
 /* BUTTONS */
-.btn{background:#0055cc;color:white;padding:12px 20px;border:none;border-radius:6px;cursor:pointer;margin-top:20px;font-size:16px}
-.btn-secondary{background:#777;color:white;padding:10px 15px;border:none;border-radius:6px;cursor:pointer;margin-top:15px}
+.btn {
+    background: #0055cc;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+}
 
-/* RESULTS */
-.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.result-box{background:#e9f1ff;padding:18px;border-radius:10px;text-align:center;border:2px solid #bcd4ff}
-.result-box h3{font-size:17px;margin-bottom:10px;color:#003366}
-.result-box p{font-size:20px;font-weight:bold;color:#00224d}
+.btn:hover {
+    background: #003f99;
+}
 
-/* TABLE */
-.table{width:100%;border-collapse:collapse;margin-top:15px}
-.table th{background:#003366;color:white;padding:12px;text-align:center}
-.table td{padding:12px;border-bottom:1px solid #ddd;text-align:center}
-.table tr:nth-child(even){background:#f2f6ff}
+.btn-secondary {
+    background: #999;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 16px;
+}
 
-/* TOTALI */
-.totali{margin-top:10px;font-size:18px}
-.percentualeFinale{margin-top:15px;font-size:22px;color:#003366;text-align:center}
+.btn-secondary:hover {
+    background: #777;
+}
 
-/* RENDIMENTO */
-.totale-final{margin-top:20px;padding:15px;background:#e6ffe6;border:2px solid #66cc66;border-radius:10px;text-align:center}
-.totale-final p{font-size:22px;font-weight:bold;color:#004d00}
+/* RISULTATI GRID */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.result-box {
+    background: #e9f1ff;
+    padding: 18px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #bcd4ff;
+}
+
+.result-box h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+    color: #003366;
+}
+
+.result-box p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #00224d;
+}
+
+/* TABLES */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.table th {
+    background: #003366;
+    color: white;
+    padding: 12px;
+    text-align: center;
+}
+
+.table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.table tr:nth-child(even) {
+    background: #f2f6ff;
+}
+
+.table tr.totale {
+    background: #d9ffd9;
+    font-weight: bold;
+}
+
+/* RISPARMIO PERCENTUALE */
+.percentuale {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #003366;
+    text-align: center;
+}
+
+/* TOTALE 10 ANNI */
+.totale-final {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e6ffe6;
+    border: 2px solid #66cc66;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.totale-final h3 {
+    margin-bottom: 10px;
+    color: #006600;
+}
+
+.totale-final p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #004d00;
+}
+

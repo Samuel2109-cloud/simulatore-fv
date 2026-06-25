@@ -3,136 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulatore Fotovoltaico Professionale</title>
+    <title>Simulatore Fotovoltaico - Rinascimento Solare</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="header">
-    <img src="rinascimento-solare.png" class="logo" alt="Logo">
-    <h1>Simulatore Fotovoltaico Professionale</h1>
-</header>
+    <!-- HEADER -->
+    <header class="header">
+        <img src="rinascimento-solare.png" alt="Logo Rinascimento Solare" class="logo">
+        <h1>Simulatore Fotovoltaico Professionale</h1>
+        <p>Analisi tecnica, economica e rendimento proiettato</p>
+    </header>
 
-<!-- PARAMETRI -->
-<section class="card">
-    <h2>Parametri di Simulazione</h2>
+    <!-- PARAMETRI -->
+    <section class="card">
+        <h2>Parametri di Simulazione</h2>
 
-    <div class="grid-2">
+        <div class="grid-2">
+            <div>
+                <label>Potenza Impianto (kW)</label>
+                <input type="number" id="potenza" value="6">
+            </div>
 
-        <div>
-            <label>Giorno / Notte</label>
-            <select id="giornoNotte">
-                <option value="giorno">Giorno</option>
-                <option value="notte">Notte</option>
-            </select>
+            <div>
+                <label>Produzione Specifica (kWh/kW)</label>
+                <input type="number" id="produzione" value="1350">
+            </div>
+
+            <div>
+                <label>Autoconsumo (%)</label>
+                <input type="number" id="autoconsumo" value="40">
+            </div>
+
+            <div>
+                <label>Prezzo Energia (€/kWh)</label>
+                <input type="number" id="prezzo" value="0.28">
+            </div>
+
+            <div>
+                <label>Prezzo Medio Concorrenza (€)</label>
+                <input type="number" id="prezzoConcorrenza" value="14500">
+            </div>
+
+            <div>
+                <label>Prezzo Impianto Rinascimento Solare (€)</label>
+                <input type="number" id="prezzoNostro" value="11800">
+            </div>
         </div>
 
-        <div>
-            <label>Configurazione Impianto (kWp)</label>
-            <select id="configurazione">
-                <option value="3">3 kWp</option>
-                <option value="4.5">4.5 kWp</option>
-                <option value="6" selected>6 kWp</option>
-                <option value="7.5">7.5 kWp</option>
-                <option value="9">9 kWp</option>
-            </select>
+        <button onclick="calcola()" class="btn">Avvia Simulazione</button>
+        <button onclick="resetForm()" class="btn-secondary">Reset</button>
+    </section>
+
+    <!-- RISULTATI -->
+    <section class="card">
+        <h2>Risultati della Simulazione</h2>
+
+        <div class="results-grid">
+            <div class="result-box">
+                <h3>Produzione Annuale</h3>
+                <p id="prodAnnua">0 kWh</p>
+            </div>
+
+            <div class="result-box">
+                <h3>Autoconsumo</h3>
+                <p id="autoConsumo">0 kWh</p>
+            </div>
+
+            <div class="result-box">
+                <h3>Immissione in Rete</h3>
+                <p id="immRete">0 kWh</p>
+            </div>
+
+            <div class="result-box">
+                <h3>Risparmio Annuale</h3>
+                <p id="risparmioAnn">0 €</p>
+            </div>
         </div>
+    </section>
 
-        <div>
-            <label>Consumi Annui (kWh)</label>
-            <input type="number" id="consumi" value="3600">
+    <!-- PREVENTIVO -->
+    <section class="card">
+        <h2>Preventivo Economico</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Voce</th>
+                    <th>Importo (€)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Prezzo Impianto Rinascimento Solare</td>
+                    <td id="totNostro">0 €</td>
+                </tr>
+                <tr>
+                    <td>Prezzo Medio Concorrenza</td>
+                    <td id="totConc">0 €</td>
+                </tr>
+                <tr class="totale">
+                    <td>Risparmio Totale</td>
+                    <td id="risparmioTot">0 €</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="percentuale">Risparmio Percentuale: <span id="percRisparmio">0%</span></p>
+    </section>
+
+    <!-- RENDIMENTO 10 ANNI -->
+    <section class="card">
+        <h2>Rendimento Proiettato nei 10 Anni</h2>
+
+        <table class="table" id="tabellaRendimento">
+            <thead>
+                <tr>
+                    <th>Anno</th>
+                    <th>Efficienza (%)</th>
+                    <th>Valore Energia (€/kWh)</th>
+                    <th>Risparmio Autoconsumo (€)</th>
+                    <th>Guadagno Immissione (€)</th>
+                    <th>Totale Annuo (€)</th>
+                    <th>Cumulato (€)</th>
+                </tr>
+            </thead>
+            <tbody id="rendimentoBody">
+            </tbody>
+        </table>
+
+        <div class="totale-final">
+            <h3>Totale Economico Generato in 10 anni:</h3>
+            <p id="totale10anni">0 €</p>
         </div>
+    </section>
 
-        <div>
-            <label>Prezzo Energia (€/kWh)</label>
-            <input type="number" id="prezzoConsumo" value="0.28">
-        </div>
-
-        <div>
-            <label>Prezzo Vendita SSP (€/kWh)</label>
-            <input type="number" id="prezzoVendita" value="0.12">
-        </div>
-
-        <div>
-            <label>Autoconsumo (%)</label>
-            <input type="range" id="autoconsumo" min="10" max="90" value="40">
-            <p><strong id="autoconsumoVal">40%</strong></p>
-        </div>
-
-    </div>
-
-    <button id="btnCalcola" class="btn">Calcola Simulazione</button>
-</section>
-
-<!-- RISULTATI -->
-<section class="card">
-    <h2>Risultati</h2>
-
-    <div class="results-grid">
-        <div class="result-box"><h3>Produzione</h3><p id="produzione">0</p></div>
-        <div class="result-box"><h3>Autoconsumo</h3><p id="autocKw">0</p></div>
-        <div class="result-box"><h3>Riduzione</h3><p id="riduzione">0</p></div>
-        <div class="result-box"><h3>Immissione</h3><p id="immissione">0</p></div>
-        <div class="result-box"><h3>Risparmio €</h3><p id="risparmio">0</p></div>
-        <div class="result-box"><h3>RID €</h3><p id="rid">0</p></div>
-        <div class="result-box"><h3>Rendita Annua</h3><p id="renditaAnnua">0</p></div>
-        <div class="result-box"><h3>Detrazione</h3><p id="detrazione">0</p></div>
-    </div>
-</section>
-
-<!-- PREVENTIVO DINAMICO -->
-<section class="card">
-    <h2>Preventivo Dinamico</h2>
-
-    <table id="preventivo" class="table">
-        <thead>
-            <tr>
-                <th>Voce</th>
-                <th>QTY</th>
-                <th>Prezzo RS</th>
-                <th>Prezzo Concorrenza</th>
-                <th>Risparmio €</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody id="preventivoBody">
-        </tbody>
-    </table>
-
-    <button id="addRow" class="btn-secondary">+ Aggiungi Riga</button>
-
-    <h3 class="totali">Totale RS: <span id="totaleRS">0</span> €</h3>
-    <h3 class="totali">Totale Concorrenza: <span id="totaleConc">0</span> €</h3>
-    <h3 class="totali">Risparmio Totale: <span id="totaleEuro">0</span> €</h3>
-    <h2 class="percentualeFinale">Risparmio %: <span id="mediaPerc">0%</span></h2>
-</section>
-
-<!-- RENDIMENTO 10 ANNI -->
-<section class="card">
-    <h2>Rendimento Proiettato 10 Anni</h2>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Anno</th>
-                <th>Efficienza (%)</th>
-                <th>Valore Energia</th>
-                <th>Risparmio</th>
-                <th>Guadagno</th>
-                <th>Totale</th>
-                <th>Cumulato</th>
-            </tr>
-        </thead>
-        <tbody id="rendimentoBody"></tbody>
-    </table>
-
-    <div class="totale-final">
-        <h3>Totale Economico Generato:</h3>
-        <p id="totale10anni">0 €</p>
-    </div>
-</section>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
