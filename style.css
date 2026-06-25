@@ -3,88 +3,93 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 body {
-    background: #f4f7fb;
-    padding: 20px;
+    background: #eef3fa;
+    padding: 30px;
     color: #1a1a1a;
 }
 
 /* HEADER */
 .header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .header h1 {
-    font-size: 32px;
-    color: #003366;
+    font-size: 36px;
+    color: #002b5c;
     margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .logo {
-    width: 180px;
-    margin-bottom: 15px;
+    width: 200px;
+    margin-bottom: 20px;
 }
 
 /* ICON LINE */
 .icone-linea {
     display: flex;
     justify-content: center;
-    gap: 35px;
-    font-size: 18px;
-    margin-top: 10px;
+    align-items: center;
+    gap: 40px;
+    font-size: 20px;
     color: #003366;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 /* SIMULAZIONE LAYOUT */
 .simulazione-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin-bottom: 30px;
+    gap: 30px;
+    margin-bottom: 40px;
 }
 
 /* CARD PARAMETRI */
 .parametri {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
 
 .parametri h2 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: #003366;
+    font-size: 22px;
 }
 
 .parametri label {
-    font-weight: bold;
-    margin-top: 12px;
+    font-weight: 600;
+    margin-top: 14px;
     display: block;
+    color: #002b5c;
 }
 
-.parametri input,
-.parametri select {
+.parametri input {
     width: 100%;
     padding: 10px;
     border: 1px solid #bbb;
     border-radius: 6px;
-    margin-top: 5px;
+    margin-top: 6px;
+    font-size: 15px;
 }
 
 .btn {
     background: #0055cc;
     color: white;
-    padding: 12px 20px;
+    padding: 12px 22px;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 25px;
     font-size: 16px;
+    font-weight: 600;
 }
 
 .btn:hover {
@@ -93,128 +98,19 @@ body {
 
 /* RISULTATI */
 .risultati {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
 
 .risultati h2 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: #003366;
+    font-size: 22px;
 }
 
 /* GRID RISULTATI */
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-.result-box {
-    background: #e9f1ff;
-    padding: 18px;
-    border-radius: 10px;
-    text-align: center;
-    border: 2px solid #bcd4ff;
-    min-height: 110px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.result-box h3 {
-    font-size: 15px;
-    margin-bottom: 6px;
-    color: #003366;
-}
-
-.result-box p {
-    font-size: 20px;
-    font-weight: bold;
-    color: #00224d;
-}
-
-/* PREVENTIVO */
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    margin-bottom: 25px;
-}
-
-.card h2 {
-    margin-bottom: 20px;
-    color: #003366;
-}
-
-/* TABELLA PREVENTIVO */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-}
-
-.table th {
-    background: #003366;
-    color: white;
-    padding: 12px;
-    text-align: center;
-}
-
-.table td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-}
-
-.table tr:nth-child(even) {
-    background: #f2f6ff;
-}
-
-/* SLIDER PREZZO */
-.sliderVal {
-    margin-top: 5px;
-    font-weight: bold;
-}
-
-/* BOTTONI PREVENTIVO */
-.btn-secondary {
-    background: #777;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 15px;
-}
-
-.btn-secondary:hover {
-    background: #555;
-}
-
-/* TOTALI PREVENTIVO */
-.totali {
-    margin-top: 10px;
-    font-size: 18px;
-}
-
-.percentualeFinale {
-    margin-top: 15px;
-    font-size: 22px;
-    color: #003366;
-    text-align: center;
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-    .simulazione-container {
-        grid-template-columns: 1fr;
-    }
-
-    .icone-linea {
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-}
+    grid-template-columns
