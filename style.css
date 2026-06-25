@@ -101,6 +101,47 @@ h2 {
 }
 
 /* ============================
+   PARAMETRI SIMULAZIONE
+============================ */
+
+#parametri-simulazione {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.param-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.param-row label {
+  font-weight: 600;
+  color: #0d3c78;
+  font-size: 14px;
+}
+
+.param-row input[type="number"],
+.param-row input[type="text"] {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.param-row input[type="range"] {
+  width: 100%;
+}
+
+.param-row output {
+  font-weight: 700;
+  color: #0d3c78;
+  text-align: right;
+  font-size: 13px;
+}
+
+/* ============================
    BLOCCHI
 ============================ */
 
@@ -117,41 +158,9 @@ h2 {
 }
 
 /* ============================
-   INPUT E SLIDER
+   SLIDER + VALORE
 ============================ */
 
-label {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-input[type="range"] {
-  width: 100%;
-  margin-top: 6px;
-}
-
-input[type="number"], input[type="text"], select {
-  padding: 6px 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  margin-top: 6px;
-}
-
-input[readonly] {
-  background: #eee;
-  cursor: not-allowed;
-}
-
-output {
-  margin-top: 4px;
-  font-weight: bold;
-  color: #0d3c78;
-}
-
-/* Slider + valore numerico */
 .slider-cell {
   display: flex;
   align-items: center;
@@ -165,38 +174,6 @@ output {
   font-weight: 600;
   color: #0d3c78;
 }
-
-/* ============================
-   PARAMETRI SIMULAZIONE
-============================ */
-
-#parametri-simulazione {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.param-row {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.param-row label {
-  font-weight: 600;
-  color: #0d3c78;
-}
-
-.param-row input[type="range"] {
-  width: 100%;
-}
-
-.param-row output {
-  font-weight: 700;
-  color: #0d3c78;
-  text-align: right;
-}
-
 
 /* ============================
    BOTTONI

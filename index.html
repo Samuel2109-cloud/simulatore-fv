@@ -35,51 +35,64 @@
     <!-- COLONNA SINISTRA -->
     <div id="col-sx">
 
-     <h2>Parametri Simulazione</h2>
+      <h2>Parametri Simulazione</h2>
 
-<div class="blocco" id="parametri-simulazione">
+      <div class="blocco" id="parametri-simulazione">
 
-  <div class="param-row">
-    <label for="inp-consumi">Consumi annui attuali (kWh)</label>
-    <input type="number" id="inp-consumi" value="4000">
-  </div>
+        <div class="param-row">
+          <label for="inp-consumi">Consumi annui attuali (kWh)</label>
+          <input type="number" id="inp-consumi" value="4000">
+        </div>
 
-  <div class="param-row">
-    <label for="inp-prezzo-consumo">Prezzo energia di consumo (€ / kWh)</label>
-    <input type="number" step="0.01" id="inp-prezzo-consumo" value="0.25">
-  </div>
+        <div class="param-row">
+          <label for="inp-prezzo-consumo">Prezzo energia di consumo (€ / kWh)</label>
+          <input type="number" step="0.01" id="inp-prezzo-consumo" value="0.25">
+        </div>
 
-  <div class="param-row">
-    <label for="inp-prezzo-vendita">Prezzo energia di vendita (€ / kWh)</label>
-    <input type="number" step="0.01" id="inp-prezzo-vendita" value="0.10">
-  </div>
+        <div class="param-row">
+          <label for="inp-prezzo-vendita">Prezzo energia di vendita (€ / kWh)</label>
+          <input type="number" step="0.01" id="inp-prezzo-vendita" value="0.10">
+        </div>
 
-  <div class="param-row">
-    <label for="autoconsumo">Percentuale di autoconsumo diretto (%)</label>
-    <input type="range" id="autoconsumo" min="0" max="100" value="70" oninput="this.nextElementSibling.value=this.value">
-    <output>70</output>
-  </div>
+        <div class="param-row">
+          <label for="autoconsumo">Percentuale di autoconsumo diretto (%)</label>
+          <input type="range" id="autoconsumo" min="0" max="100" value="70" oninput="this.nextElementSibling.value=this.value">
+          <output>70</output>
+        </div>
 
-  <div class="param-row">
-    <label for="produzione">Produzione annua stimata impianto (kWh)</label>
-    <input type="range" id="produzione" min="1000" max="12000" value="4000" oninput="this.nextElementSibling.value=this.value">
-    <output>4000</output>
-  </div>
+        <div class="param-row">
+          <label for="produzione">Produzione annua stimata impianto (kWh)</label>
+          <input type="range" id="produzione" min="1000" max="12000" value="4000" oninput="this.nextElementSibling.value=this.value">
+          <output>4000</output>
+        </div>
 
-  <div class="param-row">
-    <label for="inflazione">Tasso annuo di inflazione energetica (%)</label>
-    <input type="range" id="inflazione" min="0" max="10" step="0.1" value="3" oninput="this.nextElementSibling.value=this.value">
-    <output>3</output>
-  </div>
+        <div class="param-row">
+          <label for="inflazione">Tasso annuo di inflazione energetica (%)</label>
+          <input type="range" id="inflazione" min="0" max="10" step="0.1" value="3" oninput="this.nextElementSibling.value=this.value">
+          <output>3</output>
+        </div>
 
-  <div class="param-row">
-    <label for="degrado">Tasso di degrado annuo dei pannelli</label>
-    <input type="text" id="degrado" value="0.05%" readonly>
-  </div>
+        <div class="param-row">
+          <label for="degrado">Tasso di degrado annuo dei pannelli</label>
+          <input type="text" id="degrado" value="0.05%" readonly>
+        </div>
 
-  <button id="btn-avvia">Calcola Simulazione</button>
-</div>
- 
+        <button id="btn-avvia">Calcola Simulazione</button>
+      </div>
+
+      <h2>Risultati Simulazione</h2>
+
+      <div class="blocco" id="risultati-simulazione">
+        <p>Produzione annua: <span id="out-produzione"></span> kWh</p>
+        <p>Autoconsumo: <span id="out-autoconsumo"></span> kWh</p>
+        <p>Immissione in rete: <span id="out-immissione"></span> kWh</p>
+        <p>Risparmio diretto in bolletta: <span id="out-risp-bolletta"></span> €</p>
+        <p>Guadagno da RID: <span id="out-rid"></span> €</p>
+        <p>Rendimento totale annuo: <span id="out-rend-annuo"></span> €</p>
+        <p>Ammortamento investimento iniziale: <span id="out-ammortamento"></span> anni</p>
+      </div>
+
+    </div>
 
     <!-- COLONNA DESTRA -->
     <div id="col-dx">
