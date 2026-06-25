@@ -1,64 +1,14 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <title>Simulatore Impianto Fotovoltaico</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+<label>Configurazione impianto</label>
+<select id="configurazione">
+  <option value="3_senza">impianto fotovoltaico da 3 kWp senza accumulo</option>
+  <option value="3_5">impianto fotovoltaico da 3 kWp + accumulo 5 kWh</option>
 
-<body>
+  <option value="4.5_senza">impianto fotovoltaico da 4,5 kWp senza accumulo</option>
+  <option value="4.5_5">impianto fotovoltaico da 4,5 kWp + accumulo 5 kWh</option>
 
-<h1>SIMULATORE IMPIANTO FOTOVOLTAICO</h1>
+  <option value="6_senza">impianto fotovoltaico da 6 kWp senza accumulo</option>
+  <option value="6_10">impianto fotovoltaico da 6 kWp + accumulo 10 kWh</option>
 
-<!-- ========================= -->
-<!-- TESTATA CON LOGO E SCRITTE -->
-<!-- ========================= -->
-
-<div class="header">
-  <div class="header-top">
-    <img src="img/logo_rinascimento.png" alt="Rinascimento Solare" class="logo">
-  </div>
-
-  <div class="header-row">
-    <div class="header-box">PANNELLI FV</div>
-    <div class="linea"></div>
-    <div class="header-box">INVERTER</div>
-    <div class="linea"></div>
-    <div class="header-box">BATTERIA</div>
-    <div class="linea"></div>
-    <div class="header-box">CASA</div>
-    <div class="linea"></div>
-    <div class="header-box">RETE</div>
-  </div>
-</div>
-
-<!-- ========================= -->
-<!-- PARAMETRI + RISULTATI -->
-<!-- ========================= -->
-
-<div class="section">
-  <div class="simulazione">
-
-    <div class="parametri">
-      <h2>Parametri simulazione</h2>
-
-      <label>Selettore giorno/notte</label>
-      <select id="giornoNotte">
-        <option value="giorno">Giorno ☀️</option>
-        <option value="notte">Notte 🌙</option>
-      </select>
-
-      <label>Configurazione impianto</label>
-      <select id="configurazione">
-        <option value="3">3 kWp senza accumulo</option>
-        <option value="6">6 kWp con accumulo</option>
-        <option value="10">10 kWp con accumulo</option>
-        <option value="15">15 kWp trifase</option>
-        <option value="20">20 kWp industriale</option>
-      </select>
-
-      <label>Consumi annui attuali (kWh)</label>
-      <input type="number" id="consumi" value="4000">
-
-      <label>Prezzo energia di consumo (€/kWh)</label>
-      <input type="number" id="prezzoConsumo" value="0.25" step="0.01">
+  <option value="9_senza">impianto fotovoltaico da 9 kWp senza accumulo</option>
+  <option value="9_15">impianto fotovoltaico da 9 kWp + accumulo 15 kWh</option>
+</select>
