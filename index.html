@@ -1,270 +1,107 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Simulatore FV + Preventivo & Analisi Risparmio</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulatore Fotovoltaico</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div id="container">
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Simulatore Fotovoltaico</h1>
+        <img src="logo.png" class="logo">
 
-  <!-- HEADER GENERALE -->
-  <header id="header-main">
-    <h1>Simulatore Impianto Fotovoltaico</h1>
-    <h2>+ Preventivo & Analisi Risparmio</h2>
-  </header>
-
-  <!-- SCENA GIORNO/NOTTE CON LOGO -->
-  <div id="sky">
-    <div id="sun"></div>
-    <div id="moon"></div>
-    <img id="logo" src="rinascimento-solare.png" alt="Rinascimento Solare">
-  </div>
-
-  <!-- SCHEMA IMPIANTO -->
-  <div id="impianto">
-    <div class="blocco" id="pannelli"><div class="titolo">Pannelli FV</div><div class="icona">🔆</div></div>
-    <div class="freccia" id="flusso-produzione"></div>
-    <div class="blocco" id="inverter"><div class="titolo">Inverter</div><div class="icona">⚡</div></div>
-    <div class="freccia" id="flusso-casa"></div>
-    <div class="blocco" id="casa"><div class="titolo">Casa</div><div class="icona">🏠</div></div>
-    <div class="freccia" id="flusso-rete"></div>
-    <div class="blocco" id="rete"><div class="titolo">Rete Enel</div><div class="icona">🔌</div></div>
-    <div class="blocco" id="batteria"><div class="titolo">Batteria</div><div id="batt-level"></div></div>
-  </div>
-
-  <!-- SIMULATORE FV -->
-  <section id="simulatore-fv">
-    <h2>Simulatore Impianto Fotovoltaico</h2>
-
-    <div id="simulazione">
-      <div id="input-area">
-        <h3>Parametri simulazione</h3>
-
-        <label>Selettore giorno/notte:
-          <select id="sel-giorno">
-            <option value="giorno">Giorno ☀️</option>
-            <option value="notte">Notte 🌙</option>
-          </select>
-        </label><br>
-
-        <label>Configurazione impianto:
-          <select id="sel-impianto">
-            <option value="3s">3 kWp senza accumulo</option>
-            <option value="3a">3 kWp + accumulo 5 kWh</option>
-            <option value="4.5s">4,5 kWp senza accumulo</option>
-            <option value="4.5a">4,5 kWp + accumulo 5 kWh</option>
-            <option value="6s">6 kWp senza accumulo</option>
-            <option value="6a">6 kWp + accumulo 5 kWh</option>
-            <option value="9s">9 kWp senza accumulo</option>
-            <option value="9a">9 kWp + accumulo 15 kWh</option>
-          </select>
-        </label><br>
-
-        <label>Consumi annui attuali (kWh):
-          <input type="number" id="inp-consumi" value="4000">
-        </label><br>
-
-        <label>Prezzo energia di consumo (€ / kWh):
-          <input type="number" step="0.01" id="inp-prezzo-consumo" value="0.25">
-        </label><br>
-
-        <label>Prezzo energia di vendita (€ / kWh):
-          <input type="number" step="0.01" id="inp-prezzo-vendita" value="0.10">
-        </label><br>
-
-        <button type="button" id="btn-avvia">Avvia simulazione</button>
-        <button type="reset" id="btn-reset">Reset</button>
-      </div>
-
-      <div id="divider"></div>
-
-      <div id="output-area">
-        <h3>Risultati simulazione</h3>
-
-        <div>Produzione: <span id="prod"></span> kWh</div>
-        <div>Autoconsumo: <span id="auto"></span> kWh</div>
-        <div>Immissione: <span id="imm"></span> kWh</div>
-
-        <div>Risparmio: <span id="risp"></span> €</div>
-        <div>RID: <span id="rid"></span> €</div>
-
-        <div>Rendita annua: <span id="rend-annua"></span> €</div>
-        <div>Detrazione fiscale: <span id="detrazione"></span> €</div>
-        <div>Rendita 25 anni: <span id="rend-25"></span> €</div>
-      </div>
+        <!-- ICONS LINE -->
+        <div class="icone-linea">
+            <span>🔆 PANNELLI</span>
+            <span>⚡ INVERTER</span>
+            <span>🔋 BATTERIA</span>
+            <span>🏠 CASA</span>
+            <span>🌐 RETE</span>
+        </div>
     </div>
-  </section>
 
-  <hr>
+    <!-- SIMULAZIONE -->
+    <div class="simulazione-container">
 
-  <!-- PREVENTIVO & ANALISI RISPARMIO -->
-  <section id="preventivo-analisi">
-    <h2>Preventivo & Analisi Risparmio</h2>
+        <!-- PARAMETRI -->
+        <div class="parametri">
+            <h2>Dati energetici del cliente & parametri</h2>
 
-    <!-- SEZIONE 1: DATI ENERGETICI -->
-    <section id="dati-energetici">
-      <h3>1. Dati energetici del cliente & parametri</h3>
+            <label>Consumo annuo attuale del cliente (kWh/anno)</label>
+            <input id="consumoCliente" type="number">
 
-      <div class="form-grid">
-        <label>
-          Consumo annuo attuale del cliente (kWh/anno)
-          <input type="number" id="consumo-annuo" value="4300">
-        </label>
+            <label>Produzione annua stimata impianto (kWh/anno)</label>
+            <input id="produzioneStimata" type="number">
 
-        <label>
-          Produzione annua stimata impianto (kWh/anno)
-          <input type="number" id="produzione-annua" value="2700">
-        </label>
+            <label>Costo reale dell'energia in bolletta (€/kWh)</label>
+            <input id="costoEnergia" type="number" step="0.001">
 
-        <label>
-          Costo reale dell'energia in bolletta (€/kWh)
-          <input type="number" step="0.01" id="costo-energia" value="0.37">
-        </label>
+            <label>Percentuale di autoconsumo diretto (con accumulo) (%)</label>
+            <input id="autoconsumoPerc" type="number">
 
-        <label>
-          Percentuale di autoconsumo diretto (con accumulo) (%)
-          <input type="number" step="1" id="quota-autoconsumo" value="70">
-        </label>
+            <label>Prezzo di vendita energia immessa in rete (RID/Scambio) (€/kWh)</label>
+            <input id="prezzoRID" type="number" step="0.001">
 
-        <label>
-          Prezzo di vendita energia immessa in rete (RID/Scambio) (€/kWh)
-          <input type="number" step="0.01" id="prezzo-rid" value="0.05">
-        </label>
+            <label>Tasso di degrado annuo dei pannelli (%)</label>
+            <input id="degrado" type="number" step="0.1">
 
-        <label>
-          Tasso di degrado annuo dei pannelli
-          <input type="number" step="0.001" id="degrado" value="0.005">
-        </label>
+            <label>Tasso annuo inflazione energetica (%)</label>
+            <input id="inflazioneEnergia" type="number" step="0.1">
 
-        <label>
-          Tasso annuo inflazione energetica (aumento tariffe)
-          <input type="number" step="0.01" id="inflazione" value="0.03">
-        </label>
-      </div>
+            <button id="btnCalcola" class="btn">Avvia simulazione</button>
+        </div>
 
-      <div class="buttons-row">
-        <button id="btn-calcola">Calcola preventivo & risparmio</button>
-        <button id="btn-reset-preventivo">Reset sezione preventivo</button>
-      </div>
+        <!-- RISULTATI -->
+        <div class="risultati">
+            <h2>Risultati simulazione</h2>
 
-      <div id="risultati-primo-anno" class="card">
-        <h4>Risultati economici - Primo anno</h4>
-        <p>Risparmio diretto in bolletta: <span id="risparmio-diretto"></span> €</p>
-        <p>Guadagno da energia immessa in rete (RID): <span id="guadagno-rid"></span> €</p>
-        <p><strong>Beneficio economico totale primo anno: <span id="beneficio-totale"></span> €</strong></p>
-      </div>
-    </section>
+            <div class="results-grid">
+                <div class="result-box"><h3>Produzione</h3><p id="produzione">0</p></div>
+                <div class="result-box"><h3>Autoconsumo</h3><p id="autocKw">0</p></div>
+                <div class="result-box"><h3>Immissione</h3><p id="immissione">0</p></div>
+                <div class="result-box"><h3>Risparmio</h3><p id="risparmio">0</p></div>
+                <div class="result-box"><h3>RID</h3><p id="rid">0</p></div>
+                <div class="result-box"><h3>Rendita annua</h3><p id="renditaAnnua">0</p></div>
+                <div class="result-box"><h3>Detrazione fiscale</h3><p id="detrazione">0</p></div>
+                <div class="result-box"><h3>Rendita 25 anni</h3><p id="rendita25">0</p></div>
+            </div>
+        </div>
 
-    <!-- SEZIONE 2: PREVENTIVO DETTAGLIATO -->
-    <section id="preventivo">
-      <h3>2. Preventivo dettagliato e configuratore commerciale</h3>
-      <p class="note">Compila i prezzi "Nostro" e "Concorrenza". Differenza e margine si aggiornano automaticamente.</p>
+    </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Componente / Voce di costo</th>
-            <th>Prezzo Nostro (€)</th>
-            <th>Prezzo Concorrenza (€)*</th>
-            <th>Differenza (€)</th>
-            <th>Margine di vantaggio %</th>
-          </tr>
-        </thead>
-        <tbody id="tab-preventivo-body">
-          <tr data-row="moduli">
-            <td>Moduli fotovoltaici</td>
-            <td><input type="number" class="nostro" value="2000"></td>
-            <td><input type="number" class="concorrenza" value="2500"></td>
-            <td class="diff"></td>
-            <td class="margine"></td>
-          </tr>
-          <tr data-row="inverter">
-            <td>Inverter</td>
-            <td><input type="number" class="nostro" value="800"></td>
-            <td><input type="number" class="concorrenza" value="1100"></td>
-            <td class="diff"></td>
-            <td class="margine"></td>
-          </tr>
-          <tr data-row="strutture">
-            <td>Strutture e materiali di supporto</td>
-            <td><input type="number" class="nostro" value="500"></td>
-            <td><input type="number" class="concorrenza" value="700"></td>
-            <td class="diff"></td>
-            <td class="margine"></td>
-          </tr>
-          <tr data-row="batterie">
-            <td>Sistema di accumulo (batterie)</td>
-            <td><input type="number" class="nostro" value="3000"></td>
-            <td><input type="number" class="concorrenza" value="3800"></td>
-            <td class="diff"></td>
-            <td class="margine"></td>
-          </tr>
-          <tr data-row="quadri">
-            <td>Quadri elettrici, cavi e connettori</td>
-            <td><input type="number" class="nostro" value="300"></td>
-            <td><input type="number" class="concorrenza" value="400"></td>
-            <td class="diff"></td>
-            <td class="margine"></td>
-          </tr>
-          <tr data-row="progettazione">
-            <td>Progettazione tecnica e pratiche burocratiche</td>
-            <td><input type="number" class="nostro" value="500"></td>
-            <td><input type="number" class="concorrenza" value="650"></td>
-            <td class="diff"></td>
-            <td class="margine"></td>
-          </tr>
-          <tr data-row="manodopera">
-            <td>Manodopera certificata, installazione e collaudo</td>
-            <td><input type="number" class="nostro" value="1000"></td>
-            <td><input type="number" class="concorrenza" value="1300"></td>
-            <td class="diff"></td>
-            <td class="margine"></td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr>
-            <th>Totale investimento chiavi in mano</th>
-            <th id="tot-nostro"></th>
-            <th id="tot-concorrenza"></th>
-            <th id="tot-diff"></th>
-            <th id="tot-margine"></th>
-          </tr>
-        </tfoot>
-      </table>
-    </section>
+    <!-- PREVENTIVO -->
+    <div class="card">
+        <h2>Preventivo Rinascimento Solare</h2>
 
-    <!-- SEZIONE 3: RENDIMENTO 10 ANNI -->
-    <section id="rendimento">
-      <h3>3. Rendimento proiettato nei 10 anni</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Anno</th>
-            <th>Efficienza impianto (%)</th>
-            <th>Valore energia stimato (€/kWh)</th>
-            <th>Risparmio da autoconsumo (€)</th>
-            <th>Guadagno da immissione rete (€)</th>
-            <th>Rendimento totale annuo (€)</th>
-            <th>Rendimento cumulato (€)</th>
-          </tr>
-        </thead>
-        <tbody id="tab-rendimento-body">
-        </tbody>
-        <tfoot>
-          <tr>
-            <th colspan="5">Totale economico generato in 10 anni</th>
-            <th id="totale-10-anni" colspan="2"></th>
-          </tr>
-        </tfoot>
-      </table>
-    </section>
+        <button id="addRow" class="btn-secondary">+ Aggiungi voce</button>
 
-  </section>
+        <table class="table" id="preventivo">
+            <thead>
+                <tr>
+                    <th>Voce</th>
+                    <th>Qty</th>
+                    <th>Prezzo RS (€)</th>
+                    <th>Prezzo Concorrenza</th>
+                    <th>Risparmio %</th>
+                    <th>Risparmio €</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="preventivoBody"></tbody>
+        </table>
 
-</div>
+        <div class="totali">
+            Totale RS: <span id="totaleRS">0</span> €<br>
+            Totale Concorrenza: <span id="totaleConc">0</span> €<br>
+            Risparmio totale: <span id="totaleEuro">0</span> €<br>
+            Media risparmio: <span id="mediaPerc">0%</span>
+        </div>
+    </div>
 
-<script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
