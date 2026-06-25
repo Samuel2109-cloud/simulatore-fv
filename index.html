@@ -2,177 +2,141 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Simulatore Impianto Fotovoltaico - Rinascimento Solare</title>
+  <title>Simulatore Impianto Fotovoltaico</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- TESTATA -->
-  <div class="header">
-    <h1>SIMULATORE IMPIANTO FOTOVOLTAICO</h1>
-    <div class="header-row">
-      <div class="header-item">
-        <img src="img/sole.png" alt="Sole">
-      </div>
-      <div class="arrow">➜</div>
-      <div class="header-item">
-        <img src="img/pannelli.png" alt="Pannelli FV">
-        <span>Pannelli FV</span>
-      </div>
-      <div class="arrow">➜</div>
-      <div class="header-item">
-        <img src="img/inverter.png" alt="Inverter">
-        <span>Inverter</span>
-      </div>
-      <div class="arrow">➜</div>
-      <div class="header-item">
-        <img src="img/casa.png" alt="Casa">
-        <span>Casa</span>
-      </div>
-      <div class="arrow">➜</div>
-      <div class="header-item">
-        <img src="img/batteria.png" alt="Batteria">
-        <span>Batteria</span>
-      </div>
-      <div class="arrow">➜</div>
-      <div class="header-item">
-        <img src="img/rete.png" alt="Rete">
-        <span>Rete</span>
-      </div>
+<h1>SIMULATORE IMPIANTO FOTOVOLTAICO</h1>
+
+<!-- ========================= -->
+<!-- TESTATA COME SCREENSHOT -->
+<!-- ========================= -->
+
+<div class="header">
+
+  <div class="header-top">
+    <div class="sole"></div>
+    <img src="img/logo_rinascimento.png" class="logo">
+  </div>
+
+  <div class="header-row">
+    <div class="header-item"><img src="img/pannelli.png"><span>Pannelli FV</span></div>
+    <div class="linea"></div>
+    <div class="header-item"><img src="img/inverter.png"><span>Inverter</span></div>
+    <div class="linea"></div>
+    <div class="header-item"><img src="img/casa.png"><span>Casa</span></div>
+    <div class="linea"></div>
+    <div class="header-item"><img src="img/rete.png"><span>Rete</span></div>
+    <div class="linea"></div>
+    <div class="header-item"><img src="img/batteria.png"><span>Batteria</span></div>
+  </div>
+
+</div>
+
+<!-- ========================= -->
+<!-- PARAMETRI + RISULTATI -->
+<!-- ========================= -->
+
+<div class="section">
+<div class="simulazione">
+
+  <div class="parametri">
+    <h2>Parametri simulazione</h2>
+
+    <label>Selettore giorno/notte</label>
+    <select id="giornoNotte">
+      <option value="giorno">Giorno ☀️</option>
+      <option value="notte">Notte 🌙</option>
+    </select>
+
+    <label>Configurazione impianto</label>
+    <select id="configurazione">
+      <option value="3">3 kWp senza accumulo</option>
+      <option value="6">6 kWp con accumulo</option>
+      <option value="10">10 kWp con accumulo</option>
+      <option value="15">15 kWp trifase</option>
+      <option value="20">20 kWp industriale</option>
+    </select>
+
+    <label>Consumi annui attuali (kWh)</label>
+    <input type="number" id="consumi" value="4000">
+
+    <label>Prezzo energia di consumo (€/kWh)</label>
+    <input type="number" id="prezzoConsumo" value="0.25" step="0.01">
+
+    <label>Prezzo energia di vendita (€/kWh)</label>
+    <input type="number" id="prezzoVendita" value="0.10" step="0.01">
+
+    <label>Percentuale autoconsumo diretto</label>
+    <div class="autoc-row">
+      <input type="range" id="autoconsumo" min="0" max="100" value="70">
+      <span id="autoconsumoVal">70%</span>
     </div>
+
+    <button id="btnCalcola">Avvia simulazione</button>
+    <button id="btnReset" class="reset">Reset</button>
   </div>
 
-  <!-- SEZIONE SIMULAZIONE -->
-  <div class="section">
-    <div class="simulazione">
-      <div class="parametri">
-        <h2>Parametri simulazione</h2>
-
-        <label>Selettore giorno/notte</label>
-        <select id="giornoNotte">
-          <option value="giorno">Giorno ☀️</option>
-          <option value="notte">Notte 🌙</option>
-        </select>
-
-        <label>Configurazione impianto</label>
-        <select id="configurazione">
-          <option value="3">3 kWp senza accumulo</option>
-          <option value="6">6 kWp con accumulo</option>
-          <option value="10">10 kWp con accumulo</option>
-        </select>
-
-        <label>Consumi annui attuali (kWh)</label>
-        <input type="number" id="consumi" value="4000">
-
-        <label>Prezzo energia di consumo (€/kWh)</label>
-        <input type="number" id="prezzoConsumo" value="0.25" step="0.01">
-
-        <label>Prezzo energia di vendita (€/kWh)</label>
-        <input type="number" id="prezzoVendita" value="0.10" step="0.01">
-
-        <button id="btnCalcola">Avvia simulazione</button>
-        <button id="btnReset" class="reset">Reset</button>
-      </div>
-
-      <div class="risultati">
-        <h2>Risultati simulazione</h2>
-        <p>Produzione: <span id="produzione"></span> kWh</p>
-        <p>Autoconsumo: <span id="autoconsumo"></span> kWh</p>
-        <p>Immissione: <span id="immissione"></span> kWh</p>
-        <p>Risparmio: <span id="risparmio"></span> €</p>
-        <p>RID: <span id="rid"></span> €</p>
-        <p>Rendita annua: <span id="renditaAnnua"></span> €</p>
-        <p>Detrazione fiscale: <span id="detrazione"></span> €</p>
-        <p>Rendita 25 anni: <span id="rendita25"></span> €</p>
-      </div>
-    </div>
+  <div class="risultati">
+    <h2>Risultati simulazione</h2>
+    <p>Produzione totale: <span id="produzione"></span> kWh</p>
+    <p>Produzione in autoconsumo: <span id="autocKw"></span> kWh</p>
+    <p>Riduzione: <span id="riduzione"></span> kWh</p>
+    <p>Immissione: <span id="immissione"></span> kWh</p>
+    <p>Risparmio: <span id="risparmio"></span> €</p>
+    <p>RID: <span id="rid"></span> €</p>
+    <p>Rendita annua: <span id="renditaAnnua"></span> €</p>
+    <p>Detrazione fiscale: <span id="detrazione"></span> €</p>
   </div>
 
-  <!-- SEZIONE PREVENTIVO -->
-  <div class="section">
-    <h2>Preventivo Rinascimento Solare</h2>
-    <table id="preventivo">
-      <thead>
-        <tr>
-          <th>Voce</th>
-          <th>Q.tà</th>
-          <th>Prezzo RS (€)</th>
-          <th>Prezzo Concorrenza (€)</th>
-          <th>Risparmio %</th>
-          <th>Risparmio €</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Moduli FV</td>
-          <td><input type="number" value="1" class="qty"></td>
-          <td><input type="range" min="1000" max="4000" value="2000" class="slider"></td>
-          <td class="conc"></td>
-          <td class="perc"></td>
-          <td class="euro"></td>
-        </tr>
-        <tr>
-          <td>Inverter</td>
-          <td><input type="number" value="1" class="qty"></td>
-          <td><input type="range" min="500" max="1500" value="800" class="slider"></td>
-          <td class="conc"></td>
-          <td class="perc"></td>
-          <td class="euro"></td>
-        </tr>
-        <tr>
-          <td>Struttura e materiali</td>
-          <td><input type="number" value="1" class="qty"></td>
-          <td><input type="range" min="300" max="1000" value="500" class="slider"></td>
-          <td class="conc"></td>
-          <td class="perc"></td>
-          <td class="euro"></td>
-        </tr>
-        <tr>
-          <td>Sistema di accumulo</td>
-          <td><input type="number" value="1" class="qty"></td>
-          <td><input type="range" min="2000" max="5000" value="3000" class="slider"></td>
-          <td class="conc"></td>
-          <td class="perc"></td>
-          <td class="euro"></td>
-        </tr>
-        <tr>
-          <td>Quadri, cavi e connettori</td>
-          <td><input type="number" value="1" class="qty"></td>
-          <td><input type="range" min="200" max="600" value="300" class="slider"></td>
-          <td class="conc"></td>
-          <td class="perc"></td>
-          <td class="euro"></td>
-        </tr>
-        <tr>
-          <td>Progettazione e pratiche</td>
-          <td><input type="number" value="1" class="qty"></td>
-          <td><input type="range" min="300" max="800" value="500" class="slider"></td>
-          <td class="conc"></td>
-          <td class="perc"></td>
-          <td class="euro"></td>
-        </tr>
-        <tr>
-          <td>Manodopera e installazione</td>
-          <td><input type="number" value="1" class="qty"></td>
-          <td><input type="range" min="500" max="2000" value="1000" class="slider"></td>
-          <td class="conc"></td>
-          <td class="perc"></td>
-          <td class="euro"></td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <th colspan="2">Totale investimento</th>
-          <th id="totaleRS"></th>
-          <th id="totaleConc"></th>
-          <th id="mediaPerc"></th>
-          <th id="totaleEuro"></th>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
+</div>
+</div>
 
-  <script src="app.js"></script>
+<!-- ========================= -->
+<!-- PREVENTIVO -->
+<!-- ========================= -->
+
+<div class="section">
+<h2>Preventivo Rinascimento Solare</h2>
+
+<table id="preventivo">
+<thead>
+<tr>
+<th>Voce</th>
+<th>Q.tà</th>
+<th>Prezzo RS (€)</th>
+<th>Prezzo Concorrenza (€)</th>
+<th>Risparmio %</th>
+<th>Risparmio €</th>
+</tr>
+</thead>
+
+<tbody>
+<tr><td>Moduli FV</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="1000" max="4000" value="2000" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
+<tr><td>Inverter</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="500" max="1500" value="800" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
+<tr><td>Struttura e materiali</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="300" max="1000" value="500" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
+<tr><td>Sistema di accumulo</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="2000" max="5000" value="3000" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
+<tr><td>Quadri, cavi e connettori</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="200" max="600" value="300" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
+<tr><td>Progettazione e pratiche</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="300" max="800" value="500" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
+<tr><td>Manodopera e installazione</td><td><input type="number" value="1" class="qty"></td><td><input type="range" min="500" max="2000" value="1000" class="slider"></td><td class="conc"></td><td class="perc"></td><td class="euro"></td></tr>
+</tbody>
+
+<tfoot>
+<tr>
+<th colspan="2">Totale investimento</th>
+<th id="totaleRS"></th>
+<th id="totaleConc"></th>
+<th id="mediaPerc"></th>
+<th id="totaleEuro"></th>
+</tr>
+</tfoot>
+
+</table>
+</div>
+
+<script src="app.js"></script>
+
 </body>
 </html>
