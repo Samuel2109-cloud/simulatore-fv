@@ -77,8 +77,6 @@
     <div class="card">
         <h2>Preventivo Rinascimento Solare</h2>
 
-        <button id="addRow" class="btn-secondary">+ Aggiungi voce</button>
-
         <table class="table" id="preventivo">
             <thead>
                 <tr>
@@ -88,10 +86,60 @@
                     <th>Prezzo Concorrenza</th>
                     <th>Risparmio %</th>
                     <th>Risparmio €</th>
-                    <th></th>
                 </tr>
             </thead>
-            <tbody id="preventivoBody"></tbody>
+
+            <tbody id="preventivoBody">
+
+                <tr>
+                    <td><input type="text" class="voce" value="Pannelli fotovoltaici"></td>
+                    <td><input type="number" class="qty" value="1"></td>
+                    <td>
+                        <input type="range" class="slider" min="500" max="5000" value="2500">
+                        <p class="sliderVal">2500 €</p>
+                    </td>
+                    <td class="conc">0</td>
+                    <td class="perc">0%</td>
+                    <td class="euro">0</td>
+                </tr>
+
+                <tr>
+                    <td><input type="text" class="voce" value="Inverter"></td>
+                    <td><input type="number" class="qty" value="1"></td>
+                    <td>
+                        <input type="range" class="slider" min="300" max="3000" value="1200">
+                        <p class="sliderVal">1200 €</p>
+                    </td>
+                    <td class="conc">0</td>
+                    <td class="perc">0%</td>
+                    <td class="euro">0</td>
+                </tr>
+
+                <tr>
+                    <td><input type="text" class="voce" value="Batteria di accumulo"></td>
+                    <td><input type="number" class="qty" value="1"></td>
+                    <td>
+                        <input type="range" class="slider" min="1000" max="8000" value="4000">
+                        <p class="sliderVal">4000 €</p>
+                    </td>
+                    <td class="conc">0</td>
+                    <td class="perc">0%</td>
+                    <td class="euro">0</td>
+                </tr>
+
+                <tr>
+                    <td><input type="text" class="voce" value="Installazione e collaudo"></td>
+                    <td><input type="number" class="qty" value="1"></td>
+                    <td>
+                        <input type="range" class="slider" min="500" max="3000" value="1500">
+                        <p class="sliderVal">1500 €</p>
+                    </td>
+                    <td class="conc">0</td>
+                    <td class="perc">0%</td>
+                    <td class="euro">0</td>
+                </tr>
+
+            </tbody>
         </table>
 
         <div class="totali">

@@ -113,4 +113,102 @@ body {
 /* GRID RISULTATI */
 .results-grid {
     display: grid;
-    grid-template-columns
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.result-box {
+    background: #e9f1ff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #bcd4ff;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.result-box:hover {
+    background: #dbe9ff;
+    transform: scale(1.02);
+}
+
+.result-box h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #003366;
+}
+
+.result-box p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00224d;
+}
+
+/* PREVENTIVO */
+.card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.card h2 {
+    margin-bottom: 25px;
+    color: #003366;
+    font-size: 22px;
+}
+
+/* TABELLA PREVENTIVO */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.table th {
+    background: #003366;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-size: 15px;
+}
+
+.table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: 15px;
+}
+
+.table tr:nth-child(even) {
+    background: #f2f6ff;
+}
+
+/* SLIDER PREZZO */
+.sliderVal {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* TOTALI PREVENTIVO */
+.totali {
+    margin-top: 15px;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .simulazione-container {
+        grid-template-columns: 1fr;
+    }
+
+    .icone-linea {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}

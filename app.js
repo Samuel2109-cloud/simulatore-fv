@@ -40,8 +40,9 @@ function calcolaSimulazione() {
     let costoEnergiaAnno = costoEnergia;
 
     for (let anno = 1; anno <= 25; anno++) {
+
         let prodEff = produzioneAnno;
-        let autocEff = prodEff * autocconsumoPerc;
+        let autocEff = prodEff * autoconsumoPerc;
         let immEff = prodEff - autocEff;
 
         let risp = autocEff * costoEnergiaAnno;
@@ -62,48 +63,14 @@ function calcolaSimulazione() {
     document.getElementById("renditaAnnua").textContent = renditaAnnua.toFixed(2);
     document.getElementById("detrazione").textContent = detrazione.toFixed(2);
     document.getElementById("rendita25").textContent = cumulato25.toFixed(2);
-
 }
 
 document.getElementById("btnCalcola").addEventListener("click", calcolaSimulazione);
 
 
 /* ============================
-   PREVENTIVO
+   PREVENTIVO — RIGHE FISSE
 ============================ */
-
-function creaRiga() {
-    const tbody = document.getElementById("preventivoBody");
-
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-        <td><input type="text" class="voce" value="Voce"></td>
-        <td><input type="number" class="qty" value="1"></td>
-        <td>
-            <input type="range" class="slider" min="100" max="5000" value="1000">
-            <p class="sliderVal">1000 €</p>
-        </td>
-        <td class="conc">0</td>
-        <td class="perc">0%</td>
-        <td class="euro">0</td>
-        <td><button class="remove btn-secondary">–</button></td>
-    `;
-
-    tbody.appendChild(tr);
-
-    tr.querySelector(".slider").addEventListener("input", aggiornaPreventivo);
-    tr.querySelector(".qty").addEventListener("input", aggiornaPreventivo);
-    tr.querySelector(".remove").addEventListener("click", () => {
-        tr.remove();
-        aggiornaPreventivo();
-    });
-
-    aggiornaPreventivo();
-}
-
-document.getElementById("addRow").addEventListener("click", creaRiga);
-
 
 function aggiornaPreventivo() {
 
@@ -142,5 +109,13 @@ function aggiornaPreventivo() {
     document.getElementById("mediaPerc").textContent = (sommaPerc / righe.length).toFixed(1) + "%";
 }
 
-/* CREA UNA RIGA INIZIALE */
-creaRiga();
+// Attiva aggiornamento slider e qty
+document.querySelectorAll(".slider").forEach(slider => {
+    slider.addEventListener("input", aggiornaPreventivo);
+});
+document.querySelectorAll(".qty").forEach(qty => {
+    qty.addEventListener("input", aggiornaPreventivo);
+});
+
+// Calcolo iniziale
+aggiornaPreventivo();
