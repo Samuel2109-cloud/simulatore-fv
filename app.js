@@ -7,11 +7,7 @@ document.getElementById("btn-avvia").addEventListener("click", () => {
         consumi: +document.getElementById("inp-consumi").value,
         prezzoConsumo: +document.getElementById("inp-prezzo-consumo").value,
         prezzoVendita: +document.getElementById("inp-prezzo-vendita").value,
-        risparmio: +document.getElementById("inp-risparmio").value,
-        rid: +document.getElementById("inp-rid").value,   // ← CAMBIATO DA SSP A RID
-        renditaAnnua: +document.getElementById("inp-rendita-annua").value,
-        detrazione: +document.getElementById("inp-detrazione").value,
-        rendita25: +document.getElementById("inp-rendita-25").value
+        risparmio: +document.getElementById("inp-risparmio").value
     };
 
     aggiornaSimulazione(d);
@@ -68,6 +64,11 @@ function aggiornaSimulazione(d) {
         case "9a": produzione = 11000; autoconsumo = 4200; immissione = 2600; break;
     }
 
+    // --- Calcoli automatici ---
+    const rid = immissione * d.prezzoVendita;
+    const renditaAnnua = d.risparmio + rid;
+    const detrazione = renditaAnnua * 0.28; // esempio: 28% di detrazione
+    const rendita25 = (renditaAnnua + detrazione) * 25;
 
     // --- Aggiorna numeri animati ---
     animaNumero("prod", produzione);
@@ -75,15 +76,13 @@ function aggiornaSimulazione(d) {
     animaNumero("imm", immissione);
 
     animaNumero("risp", d.risparmio);
-    animaNumero("rid", d.rid);  // ← CAMBIATO DA SSP A RID
-    animaNumero("rend-annua", d.renditaAnnua);
-    animaNumero("detrazione", d.detrazione);
-    animaNumero("rend-25", d.rendita25);
-
+    animaNumero("rid", rid);
+    animaNumero("rend-annua", renditaAnnua);
+    animaNumero("detrazione", detrazione);
+    animaNumero("rend-25", rendita25);
 
     // --- Batteria (se impianto con accumulo) ---
     const livello = d.impianto.includes("a") ? 80 : 10;
-
     document.querySelector("#batt-level").innerHTML =
         `<div style="width:${livello}%;height:100%;background:green;"></div>`;
 }
