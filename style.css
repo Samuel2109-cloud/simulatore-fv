@@ -116,33 +116,35 @@ h1{
   flex:1;
   min-width:320px;
   background:#f8fafc;
-  padding:20px;
+  padding:25px;
   border-radius:14px;
   box-shadow:0 2px 10px rgba(0,0,0,0.05);
 }
 
 .parametri label{
   display:block;
-  margin-top:15px;
-  font-weight:600;
-  color:#1a1a1a;
+  margin-top:18px;
+  font-weight:700;
+  color:#1a4d8f;
+  font-size:17px;
 }
 
 .parametri input,
 .parametri select{
   width:100%;
-  padding:12px;
-  margin-top:6px;
+  padding:14px 16px;
+  margin-top:8px;
   border-radius:10px;
-  border:1px solid #cfd8dc;
+  border:2px solid #1a4d8f;
   background:white;
-  font-size:16px;
+  font-size:17px;
+  color:#222;
   transition:0.2s;
 }
 
 .parametri input:focus,
 .parametri select:focus{
-  border-color:#1a4d8f;
+  border-color:#163f75;
   box-shadow:0 0 0 3px rgba(26,77,143,0.15);
 }
 
