@@ -10,7 +10,7 @@
 <body>
 
 <header class="header">
-    <img src="rinascimento-solare.png" class="logo" alt="Logo Rinascimento Solare">
+    <img src="rinascimento-solare.png" class="logo" alt="Logo">
     <h1>Simulatore Fotovoltaico Professionale</h1>
 </header>
 
@@ -83,7 +83,7 @@
 
 <!-- PREVENTIVO DINAMICO -->
 <section class="card">
-    <h2>Preventivo Rinascimento Solare</h2>
+    <h2>Preventivo Dinamico</h2>
 
     <table id="preventivo" class="table">
         <thead>
@@ -92,12 +92,12 @@
                 <th>QTY</th>
                 <th>Prezzo RS</th>
                 <th>Prezzo Concorrenza</th>
-                <th>Risparmio %</th>
                 <th>Risparmio €</th>
                 <th></th>
             </tr>
         </thead>
-        <tbody id="preventivoBody"></tbody>
+        <tbody id="preventivoBody">
+        </tbody>
     </table>
 
     <button id="addRow" class="btn-secondary">+ Aggiungi Riga</button>
@@ -105,7 +105,7 @@
     <h3 class="totali">Totale RS: <span id="totaleRS">0</span> €</h3>
     <h3 class="totali">Totale Concorrenza: <span id="totaleConc">0</span> €</h3>
     <h3 class="totali">Risparmio Totale: <span id="totaleEuro">0</span> €</h3>
-    <h2 class="percentualeFinale">Risparmio % Medio: <span id="mediaPerc">0%</span></h2>
+    <h2 class="percentualeFinale">Risparmio %: <span id="mediaPerc">0%</span></h2>
 </section>
 
 <!-- RENDIMENTO 10 ANNI -->
