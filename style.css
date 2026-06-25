@@ -42,7 +42,7 @@ body {
     margin-top: 10px;
 }
 
-/* SIMULAZIONE LAYOUT */
+/* SIMULAZIONE */
 .simulazione-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -50,20 +50,20 @@ body {
     margin-bottom: 40px;
 }
 
-/* CARD PARAMETRI */
-.parametri {
+.parametri, .risultati, .card {
     background: #ffffff;
     padding: 30px;
     border-radius: 14px;
     box-shadow: 0 6px 16px rgba(0,0,0,0.1);
 }
 
-.parametri h2 {
+.parametri h2, .risultati h2, .card h2 {
     margin-bottom: 25px;
     color: #003366;
     font-size: 22px;
 }
 
+/* INPUT */
 .parametri label {
     font-weight: 600;
     margin-top: 14px;
@@ -97,20 +97,6 @@ body {
 }
 
 /* RISULTATI */
-.risultati {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 14px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-}
-
-.risultati h2 {
-    margin-bottom: 25px;
-    color: #003366;
-    font-size: 22px;
-}
-
-/* GRID RISULTATI */
 .results-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -148,21 +134,6 @@ body {
 }
 
 /* PREVENTIVO */
-.card {
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 14px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-}
-
-.card h2 {
-    margin-bottom: 25px;
-    color: #003366;
-    font-size: 22px;
-}
-
-/* TABELLA PREVENTIVO */
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -188,13 +159,12 @@ body {
     background: #f2f6ff;
 }
 
-/* SLIDER PREZZO */
 .sliderVal {
     margin-top: 5px;
     font-weight: bold;
 }
 
-/* TOTALI PREVENTIVO */
+/* TOTALI */
 .totali {
     margin-top: 15px;
     font-size: 18px;
@@ -211,4 +181,3 @@ body {
         flex-wrap: wrap;
         gap: 20px;
     }
-}

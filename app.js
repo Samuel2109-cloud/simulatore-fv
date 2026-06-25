@@ -42,7 +42,7 @@ function calcolaSimulazione() {
     for (let anno = 1; anno <= 25; anno++) {
 
         let prodEff = produzioneAnno;
-        let autocEff = prodEff * autoconsumoPerc;
+        let autocEff = prodEff * autocconsumoPerc;
         let immEff = prodEff - autocEff;
 
         let risp = autocEff * costoEnergiaAnno;
@@ -94,28 +94,4 @@ function aggiornaPreventivo() {
         const risparmioPerc = (risparmioEuro / prezzoConc) * 100;
 
         riga.querySelector(".conc").textContent = prezzoConc.toFixed(2);
-        riga.querySelector(".perc").textContent = risparmioPerc.toFixed(1) + "%";
-        riga.querySelector(".euro").textContent = risparmioEuro.toFixed(2);
-
-        totaleRS += prezzoRS;
-        totaleConc += prezzoConc;
-        totaleEuro += risparmioEuro;
-        sommaPerc += risparmioPerc;
-    });
-
-    document.getElementById("totaleRS").textContent = totaleRS.toFixed(2);
-    document.getElementById("totaleConc").textContent = totaleConc.toFixed(2);
-    document.getElementById("totaleEuro").textContent = totaleEuro.toFixed(2);
-    document.getElementById("mediaPerc").textContent = (sommaPerc / righe.length).toFixed(1) + "%";
-}
-
-// Attiva aggiornamento slider e qty
-document.querySelectorAll(".slider").forEach(slider => {
-    slider.addEventListener("input", aggiornaPreventivo);
-});
-document.querySelectorAll(".qty").forEach(qty => {
-    qty.addEventListener("input", aggiornaPreventivo);
-});
-
-// Calcolo iniziale
-aggiornaPreventivo();
+        riga.querySelector(".perc").textContent = risparmioPerc.toFixed
