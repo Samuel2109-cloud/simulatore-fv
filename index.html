@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Simulatore Fotovoltaico Rinascimento Solare</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="container">
+
+  <!-- SCENA GIORNO/NOTTE CON LOGO CENTRATO -->
+  <div id="sky">
+    <div id="sun"></div>
+    <div id="moon"></div>
+    <img id="logo" src="rinascimento-solare.png" alt="Rinascimento Solare">
+  </div>
+
+  <!-- SCHEMA IMPIANTO -->
+  <div id="impianto">
+    <div class="blocco" id="pannelli"><div class="titolo">Pannelli FV</div><div class="icona">🔆</div></div>
+    <div class="freccia" id="flusso-produzione"></div>
+    <div class="blocco" id="inverter"><div class="titolo">Inverter</div><div class="icona">⚡</div></div>
+    <div class="freccia" id="flusso-casa"></div>
+    <div class="blocco" id="casa"><div class="titolo">Casa</div><div class="icona">🏠</div></div>
+    <div class="freccia" id="flusso-rete"></div>
+    <div class="blocco" id="rete"><div class="titolo">Rete Enel</div><div class="icona">🔌</div></div>
+    <div class="blocco" id="batteria"><div class="titolo">Batteria</div><div id="batt-level"></div></div>
+  </div>
+
+  <!-- BLOCCO ORIZZONTALE INPUT + RISULTATI -->
+  <div id="simulazione">
+    <div id="input-area">
+      <h2>Parametri simulazione</h2>
+
+      <label>Selettore giorno/notte:
+        <select id="sel-giorno">
+          <option value="giorno">Giorno ☀️</option>
+          <option value="notte">Notte 🌙</option>
+        </select>
+      </label><br>
+
+      <label>Configurazione impianto:
+        <select id="sel-impianto">
+          <option value="3s">3 kWp senza accumulo</option>
+          <option value="3a">3 kWp + accumulo 5 kWh</option>
+          <option value="4.5s">4,5 kWp senza accumulo</option>
+          <option value="4.5a">4,5 kWp + accumulo 5 kWh</option>
+          <option value="6s">6 kWp senza accumulo</option>
+          <option value="6a">6 kWp + accumulo 5 kWh</option>
+          <option value="9s">9 kWp senza accumulo</option>
+          <option value="9a">9 kWp + accumulo 15 kWh</option>
+        </select>
+      </label><br>
+
+      <label>Consumi annui attuali (kWh): <input type="number" id="inp-consumi" value="4000"></label><br>
+      <label>Prezzo energia di consumo (€ / kWh): <input type="number" step="0.01" id="inp-prezzo-consumo" value="0.25"></label><br>
+      <label>Prezzo energia di vendita (€ / kWh): <input type="number" step="0.01" id="inp-prezzo-vendita" value="0.10"></label><br>
+      <label>Totale energia risparmiata (€): <input type="number" id="inp-risparmio" value="1600"></label><br>
+      <label>Totale energia rimborsata (€): <input type="number" id="inp-rimborso" value="320"></label><br>
+      <label>Rendita annua fotovoltaico (€): <input type="number" id="inp-rendita-annua" value="1956"></label><br>
+      <label>Detrazione fiscale annua (€): <input type="number" id="inp-detrazione" value="545"></label><br>
+      <label>Rendita in 25 anni (€): <input type="number" id="inp-rendita-25" value="54350"></label><br>
+
+      <button type="button" id="btn-avvia">Avvia simulazione</button>
+      <button type="reset" id="btn-reset">Reset</button>
+    </div>
+
+    <div id="divider"></div>
+
+    <div id="output-area">
+      <h2>Risultati simulazione</h2>
+      <div>Produzione: <span id="prod"></span> kWh</div>
+      <div>Autoconsumo: <span id="auto"></span> kWh</div>
+      <div>Immissione: <span id="imm"></span> kWh</div>
+      <div>Risparmio: <span id="risp"></span> €</div>
+      <div>Rimborso SSP: <span id="ssp"></span> €</div>
+      <div>Rendita annua: <span id="rend-annua"></span> €</div>
+      <div>Detrazione fiscale: <span id="detrazione"></span> €</div>
+      <div>Rendita 25 anni: <span id="rend-25"></span> €</div>
+    </div>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
