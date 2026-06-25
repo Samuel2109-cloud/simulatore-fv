@@ -2,15 +2,24 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>SIMULATORE IMPIANTO FOTOVOLTAICO</title>
+  <title>SIMULATORE FOTOVOLTAICO</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div id="main-container">
+<div id="container">
 
-  <h1 id="titolo">SIMULATORE IMPIANTO FOTOVOLTAICO</h1>
+  <!-- HEADER -->
+  <header id="header-main">
+    <h1>SIMULATORE FOTOVOLTAICO</h1>
+  </header>
+
+  <!-- SCENA GIORNO/NOTTE CON LOGO -->
+  <div id="sky">
+    <div id="sun"></div>
+    <img id="logo" src="rinascimento-solare.png" alt="Rinascimento Solare">
+  </div>
 
   <!-- SCHEMA IMPIANTO -->
   <div id="impianto">
@@ -34,6 +43,38 @@
       <h2>Parametri Simulazione</h2>
 
       <div class="blocco">
+        <label>Selettore giorno/notte:
+          <select id="sel-giorno">
+            <option value="giorno">Giorno ☀️</option>
+            <option value="notte">Notte 🌙</option>
+          </select>
+        </label>
+
+        <label>Configurazione impianto:
+          <select id="sel-impianto">
+            <option value="3s">3 kWp senza accumulo</option>
+            <option value="3a">3 kWp + accumulo 5 kWh</option>
+            <option value="4.5s">4,5 kWp senza accumulo</option>
+            <option value="4.5a">4,5 kWp + accumulo 5 kWh</option>
+            <option value="6s">6 kWp senza accumulo</option>
+            <option value="6a">6 kWp + accumulo 5 kWh</option>
+            <option value="9s">9 kWp senza accumulo</option>
+            <option value="9a">9 kWp + accumulo 15 kWh</option>
+          </select>
+        </label>
+
+        <label>Consumi annui attuali (kWh):
+          <input type="number" id="inp-consumi" value="4000">
+        </label>
+
+        <label>Prezzo energia di consumo (€ / kWh):
+          <input type="number" step="0.01" id="inp-prezzo-consumo" value="0.25">
+        </label>
+
+        <label>Prezzo energia di vendita (€ / kWh):
+          <input type="number" step="0.01" id="inp-prezzo-vendita" value="0.10">
+        </label>
+
         <label>PERCENTUALE DI AUTOCONSUMO DIRETTO (%)
           <input type="range" id="autoconsumo" min="0" max="100" value="70" oninput="this.nextElementSibling.value=this.value">
           <output>70</output>
@@ -49,11 +90,11 @@
           <output>3</output>
         </label>
 
-        <label>TASSO DI DEGRADO ANNUO DEI PANNELLI
+        <label>TASSO DI DEGRADO ANNUO DEI PANNELLI:
           <input type="text" id="degrado" value="0.05%" readonly>
         </label>
 
-        <button id="btn-simula">Calcola Simulazione</button>
+        <button id="btn-avvia">Calcola Simulazione</button>
       </div>
 
       <h2>Risultati Simulazione</h2>
@@ -126,42 +167,68 @@
               </div>
             </td>
             <td id="c_strutture"></td>
-            <td id="r_strutture_perc"></td>
-            <td id="r_strutture_euro"></td>
-          </tr>
-
-          <tr data-voce="accumulo">
-            <td>Sistema di accumulo</td>
-            <td><input type="number" id="q_accumulo" value="1"></td>
-            <td>
-              <div class="slider-cell">
-                <input type="range" id="p_accumulo" min="1000" max="10000" value="3000" oninput="aggiornaPreventivo()">
-                <span id="v_accumulo" class="valore-slider">3000</span>
+            <td id="r_strutture_per
               </div>
             </td>
-            <td id="c_accumulo"></td>
-            <td id="r_accumulo_perc"></td>
-            <td id="r_accumulo_euro"></td>
+            <td id="c_progettazione"></td>
+            <td id="r_progettazione_perc"></td>
+            <td id="r_progettazione_euro"></td>
           </tr>
 
-          <tr data-voce="quadri">
-            <td>Quadri, cavi e connettori</td>
-            <td><input type="number" id="q_quadri" value="1"></td>
+          <tr data-voce="manodopera">
+            <td>Manodopera e installazione</td>
+            <td><input type="number" id="q_manodopera" value="1"></td>
             <td>
               <div class="slider-cell">
-                <input type="range" id="p_quadri" min="100" max="1500" value="300" oninput="aggiornaPreventivo()">
-                <span id="v_quadri" class="valore-slider">300</span>
+                <input type="range" id="p_manodopera" min="500" max="5000" value="1000" oninput="aggiornaPreventivo()">
+                <span id="v_manodopera" class="valore-slider">1000</span>
               </div>
             </td>
-            <td id="c_quadri"></td>
-            <td id="r_quadri_perc"></td>
-            <td id="r_quadri_euro"></td>
+            <td id="c_manodopera"></td>
+            <td id="r_manodopera_perc"></td>
+            <td id="r_manodopera_euro"></td>
           </tr>
 
-          <tr data-voce="progettazione">
-            <td>Progettazione e pratiche</td>
-            <td><input type="number" id="q_progettazione" value="1"></td>
-            <td>
-              <div class="slider-cell">
-                <input type="range" id="p_progettazione" min="200" max="2000" value="500" oninput="aggiornaPreventivo()">
-                <span id="v_progettazione" class="valore-slider">500</span>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <th colspan="2">Totale investimento</th>
+            <th id="tot_rinascimento"></th>
+            <th id="tot_concorrenza"></th>
+            <th id="tot_risparmio_perc"></th>
+            <th id="tot_risparmio_euro"></th>
+          </tr>
+        </tfoot>
+
+      </table>
+
+    </div>
+  </div>
+
+  <!-- ============================
+       RENDIMENTO 25 ANNI
+  ============================= -->
+
+  <h2>Rendimento Economico a 25 anni</h2>
+
+  <table id="tab-rendimento">
+    <thead>
+      <tr>
+        <th>Anno</th>
+        <th>Efficienza (%)</th>
+        <th>Valore energia (€/kWh)</th>
+        <th>Risparmio autoconsumo (€)</th>
+        <th>Guadagno rete (€)</th>
+        <th>Totale annuo (€)</th>
+        <th>Cumulato (€)</th>
+      </tr>
+    </thead>
+    <tbody id="tab-rendimento-body"></tbody>
+  </table>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

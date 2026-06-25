@@ -1,55 +1,82 @@
-// ===============================
-//   SIMULAZIONE FOTOVOLTAICO
-// ===============================
+/* ============================================================
+   SEZIONE: SIMULAZIONE FOTOVOLTAICO
+============================================================ */
 
-document.getElementById("btn-simula").addEventListener("click", () => {
+document.getElementById("btn-avvia").addEventListener("click", () => {
+    aggiornaSimulazione();
+    generaRendimento25Anni();
+});
+
+/* --- Alternanza giorno/notte + animazioni --- */
+function aggiornaSoleLuna(giorno) {
+    const sun = document.getElementById("sun");
+    const sky = document.getElementById("sky");
+
+    if (giorno === "giorno") {
+        sun.style.opacity = "1";
+        sky.style.background = "linear-gradient(#87CEEB, #ffffff)";
+    } else {
+        sun.style.opacity = "0";
+        sky.style.background = "linear-gradient(#0b1a3a, #1a2a4a)";
+    }
+}
+
+/* --- Calcolo simulazione FV --- */
+function aggiornaSimulazione() {
+
+    const giorno = document.getElementById("sel-giorno").value;
+    aggiornaSoleLuna(giorno);
+
+    const impianto = document.getElementById("sel-impianto").value;
+    const consumi = +document.getElementById("inp-consumi").value;
+    const prezzoConsumo = +document.getElementById("inp-prezzo-consumo").value;
+    const prezzoVendita = +document.getElementById("inp-prezzo-vendita").value;
+
     const autoconsumoPerc = +document.getElementById("autoconsumo").value;
     const produzioneAnnua = +document.getElementById("produzione").value;
+
     const inflazione = +document.getElementById("inflazione").value / 100;
     const degrado = 0.0005; // 0,05%
 
-    // Valori fissi
-    const costoEnergia = 0.37;
-    const prezzoRID = 0.05;
+    /* --- Produzione base per configurazione --- */
+    let produzione = produzioneAnnua;
+    let autoconsumo = produzione * (autoconsumoPerc / 100);
+    let immissione = produzione - autoconsumo;
 
-    // Calcoli base
-    const autoconsumoKWh = produzioneAnnua * (autoconsumoPerc / 100);
-    const immissioneKWh = produzioneAnnua - autoconsumoKWh;
-
-    const risparmioBolletta = autoconsumoKWh * costoEnergia;
-    const guadagnoRID = immissioneKWh * prezzoRID;
+    /* --- Risparmi --- */
+    const risparmioBolletta = autoconsumo * prezzoConsumo;
+    const guadagnoRID = immissione * prezzoVendita;
     const rendimentoTotale = risparmioBolletta + guadagnoRID;
 
-    // Ammortamento (basato sul totale RS del preventivo)
+    /* --- Ammortamento --- */
     const investimento = window._totaleRS || 1;
     const ammortamento = investimento / rendimentoTotale;
 
-    // Output
-    document.getElementById("out-produzione").textContent = produzioneAnnua.toFixed(0);
-    document.getElementById("out-autoconsumo").textContent = autoconsumoKWh.toFixed(0);
-    document.getElementById("out-immissione").textContent = immissioneKWh.toFixed(0);
+    /* --- Output --- */
+    document.getElementById("out-produzione").textContent = produzione.toFixed(0);
+    document.getElementById("out-autoconsumo").textContent = autoconsumo.toFixed(0);
+    document.getElementById("out-immissione").textContent = immissione.toFixed(0);
     document.getElementById("out-risp-bolletta").textContent = risparmioBolletta.toFixed(0);
     document.getElementById("out-rid").textContent = guadagnoRID.toFixed(0);
     document.getElementById("out-rend-annuo").textContent = rendimentoTotale.toFixed(0);
     document.getElementById("out-ammortamento").textContent = ammortamento.toFixed(1);
 
-    // Salvo per rendimento 25 anni
-    window._baseAutoconsumo = autoconsumoKWh;
-    window._baseImmissione = immissioneKWh;
-    window._baseCostoEnergia = costoEnergia;
-    window._basePrezzoRID = prezzoRID;
+    /* --- Salvataggio per tabella 25 anni --- */
+    window._baseAutoconsumo = autoconsumo;
+    window._baseImmissione = immissione;
+    window._baseCostoEnergia = prezzoConsumo;
+    window._basePrezzoRID = prezzoVendita;
     window._baseInflazione = inflazione;
     window._baseDegrado = degrado;
-
-    generaRendimento25Anni();
-});
+}
 
 
-// ===============================
-//   PREVENTIVO RINASCIMENTO SOLARE
-// ===============================
+/* ============================================================
+   SEZIONE: PREVENTIVO RINASCIMENTO SOLARE
+============================================================ */
 
 function aggiornaPreventivo() {
+
     const voci = [
         "moduli", "inverter", "strutture",
         "accumulo", "quadri", "progettazione", "manodopera"
@@ -61,6 +88,9 @@ function aggiornaPreventivo() {
     voci.forEach(v => {
         const q = +document.getElementById("q_" + v).value;
         const p = +document.getElementById("p_" + v).value;
+
+        /* Aggiorna valore numerico accanto allo slider */
+        document.getElementById("v_" + v).textContent = p.toFixed(0);
 
         const conc = p * 1.15;
         const rispEuro = (conc - p) * q;
@@ -85,6 +115,7 @@ function aggiornaPreventivo() {
     window._totaleRS = totRS;
 }
 
+/* Attiva aggiornamento dinamico */
 document.querySelectorAll("#tab-preventivo input").forEach(el => {
     el.addEventListener("input", aggiornaPreventivo);
 });
@@ -92,11 +123,12 @@ document.querySelectorAll("#tab-preventivo input").forEach(el => {
 aggiornaPreventivo();
 
 
-// ===============================
-//   RENDIMENTO 25 ANNI
-// ===============================
+/* ============================================================
+   SEZIONE: RENDIMENTO ECONOMICO 25 ANNI
+============================================================ */
 
 function generaRendimento25Anni() {
+
     const tbody = document.getElementById("tab-rendimento-body");
     tbody.innerHTML = "";
 
@@ -110,6 +142,7 @@ function generaRendimento25Anni() {
     let cumulato = 0;
 
     for (let anno = 1; anno <= 25; anno++) {
+
         const efficienza = Math.pow(1 - degrado, anno - 1);
         const valoreEnergia = costoEnergia * Math.pow(1 + inflazione, anno - 1);
 
