@@ -44,3 +44,51 @@
         <select id="sel-impianto">
           <option value="3s">3 kWp senza accumulo</option>
           <option value="3a">3 kWp + accumulo 5 kWh</option>
+          <option value="4.5s">4,5 kWp senza accumulo</option>
+          <option value="4.5a">4,5 kWp + accumulo 5 kWh</option>
+          <option value="6s">6 kWp senza accumulo</option>
+          <option value="6a">6 kWp + accumulo 5 kWh</option>
+          <option value="9s">9 kWp senza accumulo</option>
+          <option value="9a">9 kWp + accumulo 15 kWh</option>
+        </select>
+      </label><br>
+
+      <label>Consumi annui attuali (kWh): 
+        <input type="number" id="inp-consumi" value="4000">
+      </label><br>
+
+      <label>Prezzo energia di consumo (€ / kWh): 
+        <input type="number" step="0.01" id="inp-prezzo-consumo" value="0.25">
+      </label><br>
+
+      <label>Prezzo energia di vendita (€ / kWh): 
+        <input type="number" step="0.01" id="inp-prezzo-vendita" value="0.10">
+      </label><br>
+
+      <button type="button" id="btn-avvia">Avvia simulazione</button>
+      <button type="reset" id="btn-reset">Reset</button>
+    </div>
+
+    <div id="divider"></div>
+
+    <div id="output-area">
+      <h2>Risultati simulazione</h2>
+
+      <div>Produzione: <span id="prod"></span> kWh</div>
+      <div>Autoconsumo: <span id="auto"></span> kWh</div>
+      <div>Immissione: <span id="imm"></span> kWh</div>
+
+      <div>Risparmio: <span id="risp"></span> €</div>
+      <div>RID: <span id="rid"></span> €</div>
+
+      <div>Rendita annua: <span id="rend-annua"></span> €</div>
+      <div>Detrazione fiscale: <span id="detrazione"></span> €</div>
+      <div>Rendita 25 anni: <span id="rend-25"></span> €</div>
+    </div>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

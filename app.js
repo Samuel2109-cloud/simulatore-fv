@@ -4,8 +4,7 @@ document.getElementById("btn-avvia").addEventListener("click", () => {
         impianto: document.getElementById("sel-impianto").value,
         consumi: +document.getElementById("inp-consumi").value,
         prezzoConsumo: +document.getElementById("inp-prezzo-consumo").value,
-        prezzoVendita: +document.getElementById("inp-prezzo-vendita").value,
-        risparmio: +document.getElementById("inp-risparmio").value
+        prezzoVendita: +document.getElementById("inp-prezzo-vendita").value
     };
     aggiornaSimulazione(d);
 });
@@ -17,6 +16,7 @@ document.getElementById("btn-reset").addEventListener("click", () => {
 });
 
 function aggiornaSimulazione(d) {
+
     // --- Alternanza sole/luna ---
     if (d.giorno === "giorno") {
         document.getElementById("sun").style.opacity = "1";
@@ -42,8 +42,9 @@ function aggiornaSimulazione(d) {
     }
 
     // --- Calcoli automatici ---
+    const risparmio = autoconsumo * d.prezzoConsumo;
     const rid = immissione * d.prezzoVendita;
-    const renditaAnnua = d.risparmio + rid;
+    const renditaAnnua = risparmio + rid;
     const detrazione = renditaAnnua * 0.28;
     const rendita25 = (renditaAnnua + detrazione) * 25;
 
@@ -51,3 +52,39 @@ function aggiornaSimulazione(d) {
     animaNumero("prod", produzione);
     animaNumero("auto", autoconsumo);
     animaNumero("imm", immissione);
+
+    animaNumero("risp", risparmio);
+    animaNumero("rid", rid);
+    animaNumero("rend-annua", renditaAnnua);
+    animaNumero("detrazione", detrazione);
+    animaNumero("rend-25", rendita25);
+
+    // --- Batteria ---
+    const livello = d.impianto.includes("a") ? 80 : 10;
+    document.querySelector("#batt-level").innerHTML =
+        `<div style="width:${livello}%;height:100%;background:green;"></div>`;
+}
+
+function animaNumero(id, valore) {
+    let el = document.getElementById(id);
+    let start = 0;
+    let end = valore;
+    let durata = 1200;
+    let step = 10;
+    let incremento = (end - start) / (durata / step);
+
+    let timer = setInterval(() => {
+        start += incremento;
+        if (start >= end) {
+            start = end;
+            clearInterval(timer);
+        }
+        el.textContent = Math.round(start);
+    }, step);
+}
+
+function resetSoleLuna() {
+    document.getElementById("sun").style.opacity = "1";
+    document.getElementById("moon").style.opacity = "0";
+    document.getElementById("sky").style.background = "linear-gradient(#87CEEB, #ffffff)";
+}
