@@ -23,17 +23,19 @@ body {
 }
 
 /* ============================
-   LOGO CENTRATO
+   HEADER + LOGO
 ============================ */
-.logo-center {
+.header {
     display: flex;
     justify-content: center;
-    padding: 18px 0 14px;
+    align-items: center;
+    padding: 20px 0 10px;
+    margin-bottom: 10px;
 }
 
 .logo {
     max-height: 70px;
-    max-width: 260px;
+    max-width: 280px;
     object-fit: contain;
 }
 
